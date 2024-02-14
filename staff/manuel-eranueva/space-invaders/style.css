@@ -14,7 +14,13 @@ body {
   position: absolute;
   top: 85vh;
   left: calc(50vw - 7.5vh);
-  background-color: red;
+  background-color: blue;
+}
+
+#alien {
+  height: 17vh;
+  position: absolute;
+  left: calc(50vw - 8.5vh);
 }
 
 /*# sourceMappingURL=style.css.map */
