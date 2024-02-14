@@ -1,0 +1,18 @@
+$ship-height: 15vh
+$ship-size-ratio: 1
+
+body
+    margin: 0
+    background-color: black
+
+#space
+    width: 1vw
+    height: auto
+    background-color: black
+
+#ship
+    height: $ship-height
+    position: absolute
+    top: calc(100vh - $ship-height)
+    left: calc(50vw - .5 * $ship-height / $ship-size-ratio)
+    background-color: red
