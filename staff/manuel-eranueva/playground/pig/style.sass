@@ -1,0 +1,60 @@
+@mixin size ($width, $height)
+    width: $width
+    height: $height
+
+@mixin position ($top, $left)
+    top: $top
+    left: $left
+
+@keyframes slidein
+    from
+        transform: translateX(-100%)
+
+    to
+        transform: translateX(0)
+
+.pig
+    &__head
+        position: relative
+        @include size(200px, 200px)
+        background-color: pink
+        @include position(50px, 50px)
+        border: 1.5px solid black
+
+    &__eye
+        position: absolute
+        @include size(50px, 50px)
+        background-color: white
+
+    &__eye--left
+        @include position(20px, 20px)
+
+    &__eye--right
+        @include position(20px, 130px)
+
+    &__pupil
+        position: absolute
+        animation: 3s linear 1s infinite alternate slidein
+        background-color: rgb(44, 54, 182)
+        @include size(15px, 15px)
+        @include position(17.5px, 17.5px)
+
+    &__nose
+        position: absolute
+        background-color: rgb(255, 103, 126)
+        @include size(130px, 50px)
+        @include position(120px, 35px)
+
+.nostril
+    position: absolute
+    background-color: rgb(253, 17, 52)
+    @include size(15px, 40px)
+    top: 5px
+
+.nose
+    &__left
+        left: 30px
+
+.nose
+    &__right
+        left: 85px

@@ -1,0 +1,39 @@
+.building {
+  width: 400px;
+  height: 700px;
+  top: 60px;
+  left: 60px;
+  position: relative;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("images/wall.JPG");
+  background-size: contain;
+}
+
+.door {
+  width: 30px;
+  height: 55px;
+  background-color: #0AD3FF;
+  align-content: center;
+  margin: 0 auto;
+  height: 10%;
+  width: 10%;
+  border: 2px solid black;
+}
+
+.window {
+  width: 30px;
+  height: 55px;
+  background-color: #2E3138;
+  display: flex;
+  border: 2px solid black;
+}
+
+.floor {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*# sourceMappingURL=style.css.map */

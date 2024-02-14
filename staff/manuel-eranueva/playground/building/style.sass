@@ -1,0 +1,36 @@
+@mixin size ($width, $height)
+    width: $width
+    height: $height
+
+@mixin position ($top, $left)
+    top: $top
+    left: $left
+
+.building
+    @include size(400px, 700px)
+    @include position(60px, 60px)
+    position: relative
+    border: 2px solid black
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    background-image: url("images/wall.JPG")
+    background-size: contain
+
+.door
+    @include size(30px, 55px)
+    background-color: #0AD3FF
+    align-content: center
+    margin: 0 auto
+    height: 10%
+    width: 10%
+    border: 2px solid black
+.window
+    @include size(30px, 55px)
+    background-color: #2E3138
+    display: flex
+    border: 2px solid black
+
+.floor
+    display: flex
+    justify-content: space-around

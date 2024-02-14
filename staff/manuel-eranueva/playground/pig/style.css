@@ -1,0 +1,66 @@
+@keyframes slidein {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.pig__head {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+  top: 50px;
+  left: 50px;
+  border: 1.5px solid black;
+}
+.pig__eye {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+}
+.pig__eye--left {
+  top: 20px;
+  left: 20px;
+}
+.pig__eye--right {
+  top: 20px;
+  left: 130px;
+}
+.pig__pupil {
+  position: absolute;
+  animation: 3s linear 1s infinite alternate slidein;
+  background-color: rgb(44, 54, 182);
+  width: 15px;
+  height: 15px;
+  top: 17.5px;
+  left: 17.5px;
+}
+.pig__nose {
+  position: absolute;
+  background-color: rgb(255, 103, 126);
+  width: 130px;
+  height: 50px;
+  top: 120px;
+  left: 35px;
+}
+
+.nostril {
+  position: absolute;
+  background-color: rgb(253, 17, 52);
+  width: 15px;
+  height: 40px;
+  top: 5px;
+}
+
+.nose__left {
+  left: 30px;
+}
+
+.nose__right {
+  left: 85px;
+}
+
+/*# sourceMappingURL=style.css.map */
