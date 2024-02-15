@@ -4,53 +4,91 @@ Command-line interface commands typical in BASH.
 
 ## pwd - path to working directory
 
-```para saber dónde estás.```
+```sh
+$ pwd
+
+/Users/manueleranueva
+```
 
 ## ls - list files / folders
 
-```listar```
+```sh
+$ ls
+
+Desktop
+Documents
+workspace
+```
 
 ## ls -l - list file with details
 
-```lista todos los archivos```
+```sh
+$ ls -l
+
+drwxr-xr-x  4 juditcampsbruch  staff  128  5 feb 16:42 helloworld
+drwxr-xr-x  4 juditcampsbruch  staff  128  5 feb 13:42 isdi-bootcamp-202402
+```
 
 ## ls -a - list hidden
 
-```muestra archivos ocultos```
+```sh
+$ ls -a 
+```
 
 ## mkdir - make directory
 
-```crear un directorio```
+```sh
+$ mkdir "folder-name"
+```
 
 ## cd - change directory
 
-```cambiar directorio```
+```sh
+$ cd "direcotry-name"
+```
 
 ## mv - move
 
-```"nombreviejo" "nombrenuevo" (renombrar)```
+```sh
+$ mv document1.js files1/document1.js
+```
 
-```mv hello.world folder-a/folder-b/folder_c (mover)```
+```
+$ mv hello.world folder-a/folder-b/folder_c
+```
 
-## touch
+## touch - creates a folder
 
-```crea un fichero```
+```sh
+$ touch "folder-name"
+```
 
 ## kill - kill process
 
-```-9 (number of the process)```
+```sh
+$ kill -9 "num-task"
+```
 
-## tree 
+## tree - ahows the files in a tree shape
 
-```shows in a tree shape the files```
+```sh
+$ tree workspace
+```
 
 ## rm -rf - remove file without asking
 
-```rm -rf workspace/helloworld ```
+```sh
+$ rm -rf "folder-name"
+```
 
 ## rsync -va --del <from> <to> (synchronizes all files and folders from-to)
 
 ```sh
-
 $ rsync va --del ./pepe/Users/my-user/pepe
+```
+
+## top - look at the processes that are working
+
+```sh
+$ top
 ```
