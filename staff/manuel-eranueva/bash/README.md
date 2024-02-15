@@ -47,3 +47,10 @@ Command-line interface commands typical in BASH.
 ## rm -rf - remove file without asking
 
 ```rm -rf workspace/helloworld ```
+
+## rsync -va --del <from> <to> (synchronizes all files and folders from-to)
+
+```sh
+
+$ rsync va --del ./pepe/Users/my-user/pepe
+```
