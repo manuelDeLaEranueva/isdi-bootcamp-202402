@@ -25,8 +25,8 @@ workspace
 ```sh
 $ ls -l
 
-drwxr-xr-x  4 juditcampsbruch  staff  128  5 feb 16:42 helloworld
-drwxr-xr-x  4 juditcampsbruch  staff  128  5 feb 13:42 isdi-bootcamp-202402
+drwxr-xr-x  4 ManuelDeLaEranueva  staff  128  5 feb 16:42 helloworld
+drwxr-xr-x  4 ManuelDeLaEranueva  staff  128  5 feb 13:42 isdi-bootcamp-202402
 ```
 
 ## ls -a - list hidden
@@ -53,7 +53,7 @@ $ cd "direcotry-name"
 $ mv document1.js files1/document1.js
 ```
 
-```
+```sh
 $ mv hello.world folder-a/folder-b/folder_c
 ```
 
