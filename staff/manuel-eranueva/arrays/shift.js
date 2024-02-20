@@ -12,4 +12,4 @@ function shift(array) {
 
 var z = [2, 'a', 6];
 console.log(shift(z)); // Output: 2
-console.log(z); // Output: [4, 6]
+console.log(z); // Output: ['a', 6]
