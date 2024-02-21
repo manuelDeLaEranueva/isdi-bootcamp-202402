@@ -7,9 +7,25 @@
  * 
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
-function insertMany(object, index, value) {
+function insertMany(object, index, ...value) {
     // TODO
-    if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
+    if (object instanceof Object) {
+        for (var i = (object.length + value.length - 1); i > (index + value.length - 1); i--) {
+            object[i] = object[i - value.length];
+        }
+
+        // insertar los nuevos valores en el objeto en la posicion que le decimos
+        for (var j = 0; j < value.length; j++) {
+            object[index + j] = value[j];
+        }
+
+        // aumentar la propiedad length
+        object.length += value.length;
+
+        return object.length
+
+    } else { throw new TypeError(object + ' is not an Object') }
+
 }
 
 console.log('CASE 1: insert skyblue in index 1')

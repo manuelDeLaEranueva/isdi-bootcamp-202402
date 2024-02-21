@@ -8,7 +8,18 @@
  */
 function remove(object, index) {
     // TODO
-    if (!(object instanceof Object)) throw new TypeError(object + ' is not an Object')
+    if (object instanceof Object) {
+        var removedColor = object[index]
+
+        for (var i = index; i < object.length; i++) {
+            object[i] = object[i + 1]
+        }
+        delete object[object.length - 1]
+        object.length--
+        return removedColor
+    } else {
+        throw new TypeError(object + ' is not an Object')
+    }
 }
 
 console.log('CASE 1: remove blue from index 1')
