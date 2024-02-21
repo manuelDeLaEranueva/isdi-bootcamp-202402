@@ -42,7 +42,7 @@ Register
 | Name   | 
 | Age    | 
 | User   |
-| Email   | 
+| Email  | 
 | Pass   | 
 | [Register] |
 | _Login_ |
