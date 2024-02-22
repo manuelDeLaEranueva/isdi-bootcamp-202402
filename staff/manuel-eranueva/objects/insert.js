@@ -28,6 +28,35 @@ function insertMany(object, index, ...value) {
 
 }
 
+console.log('CASE 0: insert skyblue, purple, yellow, lightgreen, pink and white in index 1')
+
+var colors = {
+    0: 'red',
+    1: 'blue',
+    2: 'green',
+    length: 3
+}
+
+var length = insertMany(colors, 1, 'skyblue', 'purple', 'yellow', 'lightgreen', 'pink', 'white')
+
+console.log(length)
+// 9
+
+console.log(colors)
+/*
+{
+  '0': 'red',
+  '1': 'skyblue',
+  '2': 'purple',
+  '3': 'yellow',
+  '4': 'lightgreen',
+  '5': 'pink',
+  '6': 'white',
+  '7': 'blue',
+  '8': 'green',
+  length: 9
+*/
+
 console.log('CASE 1: insert skyblue in index 1')
 
 var colors = {
