@@ -5,8 +5,9 @@ function filter(array, callback) {
     for (var i = 0; i < array.length; i++) {
         if (callback(array[i], i, array) === true) {
             var index = 0
-            newArr[index] = array[i];
+            newArr[newArr.length] = array[i];
             index++;
+
         }
     }
     return newArr
@@ -14,9 +15,10 @@ function filter(array, callback) {
 var words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
 
 var result = filter(words, function (elements) {
-    i
+
     return elements.length > 6
 });
 
 console.log(result);
 // Expected output: Array ["exuberant", "destruction", "present"]
+

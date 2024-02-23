@@ -1,10 +1,11 @@
 delete Array.prototype.find
 
 function find(array, callback) {
-    for (var i = 0; i < array.length; i++) {
-        if (callback(array[i], i, array) === true) {
+    for (var i = 0; i < array.length + 1; i++) {
+        if (callback(array[i]) === true)
             return array[i]
-        }
+
+
     }
     return undefined
 }
