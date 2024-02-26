@@ -10,4 +10,5 @@ function from(element) {
 
 console.log(from('pepe'))
 
+
 //Hasta aquí la parte facil, que es desglosar cada caracter de un string como elemento del array

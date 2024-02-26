@@ -1,19 +1,19 @@
 delete Array.prototype.findIndex
 
-function find(array, callback) {
+function findIndex(array, callback) {
     for (var i = 0; i < array.length; i++) {
         if (callback(array[i], i, array) === true) {
             return i
         }
     }
-    return undefined
+    return -1
 }
 
 console.log('CASE 1')
 
 nums = [1, 2, 3, 4, 5];
 
-var result = find(nums, function (element) {
+var result = findIndex(nums, function (element) {
     return element > 3;
 })
 console.log(result)
@@ -23,8 +23,45 @@ console.log('CASE 2')
 
 nums = [10, 20, 30, 40, 50];
 
-var result = find(nums, function (element) {
+var result = findIndex(nums, function (element) {
     return element > 20;
 })
 console.log(result)
 console.log('return 2')
+console.log(nums)
+
+console.log('CASE 3')
+var a = [2, 5, 30, 50]
+var index = findIndex(a, function (elem) { return elem > 10 })
+console.log(index)
+// 2
+
+
+console.log('CASE 4')
+var spices = [
+    { name: "turmeric", quantity: 2 },
+    { name: "dill", quantity: 0 },
+    { name: "ginger", quantity: 5 },
+];
+
+
+function isTurmeric(spice) {
+    return spice.name === "turmeric";
+}
+
+console.log(findIndex(spices, isTurmeric));
+// 0
+
+console.log('CASE 5')
+var spices = [
+    { name: "turmeric", quantity: 2 },
+    { name: "dill", quantity: 0 },
+    { name: "ginger", quantity: 5 },
+];
+
+function isSafron(spice) {
+    return spice.name === "safron";
+}
+
+console.log(findIndex(spices, isSafron));
+// -1

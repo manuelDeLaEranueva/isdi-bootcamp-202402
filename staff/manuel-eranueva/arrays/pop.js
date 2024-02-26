@@ -22,7 +22,7 @@ console.log(num)
 console.log(nums.length)
 // 4
 console.log(nums)
-// [100, 200, 300, 400]
+// [100, 200, 300, 400] 
 
 // CASE 2
 

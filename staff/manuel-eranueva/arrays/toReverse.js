@@ -12,4 +12,4 @@ function toReversed(array) {
 
 var z = [1, 2, 3, 4];
 var aarray1 = toReversed(z);
-console.log(aarray1); // [4, 3, 2, 1]
+console.log(aarray1); // [4, 3, 2, 1] 

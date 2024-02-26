@@ -39,6 +39,6 @@ console.log(index)// -1
 var index = indexOf(y, 9, 2);
 console.log(index)// 2
 var index = indexOf(y, 2, -1);
-console.log(index)// -1 OJO ESTE NO FUNCIONA
+console.log(index)// -1 OJO ESTE NO FUNCIONA 
 var index = indexOf(y, 2, -3);
 console.log(index)// 0

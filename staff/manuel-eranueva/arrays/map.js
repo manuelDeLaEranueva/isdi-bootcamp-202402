@@ -19,7 +19,7 @@ var numsX100 = map(nums, function (num) {
 })
 
 console.log(numsX100)
-// [1000, 2000, 3000, 4000, 5000]
+// [1000, 2000, 3000, 4000, 5000] 
 console.log(nums)
 // [10, 20, 30, 40, 50]
 

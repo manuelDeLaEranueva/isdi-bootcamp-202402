@@ -29,3 +29,10 @@ var result = find(nums, function (element) {
 })
 console.log(result)
 console.log('return 40')
+
+console.assert(nums[0] === 10, '10')
+console.assert(nums[1] === 20, '20')
+console.assert(nums[2] === 30, '30')
+console.assert(nums[3] === 40, '40')
+console.assert(nums[4] === 50, '50')
+console.assert(nums.length === 5)

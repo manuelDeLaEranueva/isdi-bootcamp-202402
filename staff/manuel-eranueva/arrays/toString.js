@@ -13,4 +13,4 @@ function toString(array) {
 
 const z = [1, 2, 3, 4];
 const string1 = toString(z);
-console.log(string1); // Salida: "1234"
+console.log(string1); // Salida: "1234" 

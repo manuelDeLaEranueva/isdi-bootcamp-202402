@@ -24,33 +24,35 @@ function at(array, index) {
 var nums = [100, 200, 300, 400, 500]
 
 var num = at(nums, 3)
+console.log('CASE 1')
+/*console.assert(num === nums[3], 'num must equal to third index of array given') //no refenciar la función*/
+console.assert(num === 400, 'num must equal to third index of array given') //aserción concreta del caso
 
-console.log(num)
 //400
 
-// CASE 2
+console.log('CASE 2')
 
 var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
-
+var other = []
 var char = at(chars, 4)
+console.assert(chars[4] === ' ', 'fourth index in chars must equal to blankspace')
 
-console.log(char)
 //' '
 
-// CASE 3
+console.log('CASE 3')
 
 var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
 
 var char = at(chars, -3)
 
-console.log(char)
+console.assert(char === 'n', 'char must be n, the third element starting from the end of array')
 // 'n'
 
-//CASE 4
+console.log('CASE 4')
 
 var chars = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
 
 var char = at(chars, -30)
 
-console.log(char)
+console.assert(char === undefined, 'char must be n, the third element starting from the end of array')
 //undefinded
