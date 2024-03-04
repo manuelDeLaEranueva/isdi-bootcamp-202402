@@ -1,0 +1,8 @@
+main {
+    margin: 0 20vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
