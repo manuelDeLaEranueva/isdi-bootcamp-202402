@@ -3,18 +3,18 @@ var Pet = require('./Pet')
 function Chiken(owner, name, birthdate, country, weight) {
     Pet.call(this, owner, name, birthdate, country, weight)
 
-    this.cloclo = false
+    this.clocloing = false
 }
 
 Chiken.prototype = Object.create(Pet.prototype)
 Chiken.prototype.constructor = Chiken
 
-Chiken.prototype.bark = function () {
-    this.cloclo = true
+Chiken.prototype.cloclo = function () {
+    this.clocloing = true
 }
 
 Chiken.prototype.layEgg = function () {
-    this.cloclo = false
+    this.clocloing = false
 }
 
 module.exports = Chiken
