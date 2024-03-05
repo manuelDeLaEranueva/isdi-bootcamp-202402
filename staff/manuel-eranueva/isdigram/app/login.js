@@ -8,7 +8,7 @@ form.addEventListener('submit', function (event) {
 
     event.preventDefault()
 
-    var usernameInputt = document.getElementById('username')
+    var usernameInput = document.getElementById('username')
     var username = usernameInput.value
 
     var passwordInput = document.getElementById('password')
