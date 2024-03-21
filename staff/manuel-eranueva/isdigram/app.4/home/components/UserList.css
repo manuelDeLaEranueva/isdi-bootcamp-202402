@@ -1,0 +1,13 @@
+.user-list__item {
+  cursor: pointer;
+}
+
+.user-list__item--online::marker {
+  color: limegreen;
+}
+
+.user-list__item--offline::marker {
+  color: tomato;
+}
+
+/*# sourceMappingURL=UserList.css.map */

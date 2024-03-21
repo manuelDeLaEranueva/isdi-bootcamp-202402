@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main>
+        <h1>Hello, World!</h1>
+        <nav id="menu-nav">
+            <button id="home-button">🏚️</button>
+            <button id="chat-button">💬</button>
+            <button id="logout-button">🚪</button>
+        </nav>
+
+        <section id="post-list-section"></section>
+
+        <section id="chat-section">
+            <ul id="user-list"></ul>
+
+            <div id="chat-panel">
+                <h3 id="chat-panel__username">username</h3>
+
+                <div class="message-list" id="message-list"></div>
+
+                <form>
+                    <label for="text">Text</label>
+                    <input type="text" id="text">
+
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="create-post-section">
+            <h2>Create Post</h2>
+
+            <form>
+                <label for="image">Image</label>
+                <input type="text" id="image">
+
+                <label for="text">Text</label>
+                <input type="text" id="text">
+
+                <button type="submit">Create</button>
+            </form>
+
+            <button id="create-post-cancel-button">Cancel</button>
+        </section>
+
+        <section id="edit-post-section">
+            <h2>Edit Post</h2>
+
+            <form>
+                <label for="text">Text</label>
+                <input type="text" id="text">
+
+                <button type="submit">Save</button>
+            </form>
+
+            <button id="edit-post-cancel-button">Cancel</button>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <button id="create-post-button">+</button>
+    </footer>
+
+    <script src="../data/Collection.js"></script>
+    <script src="../data/index.js"></script>
+
+    <script src="../logic.js"></script>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

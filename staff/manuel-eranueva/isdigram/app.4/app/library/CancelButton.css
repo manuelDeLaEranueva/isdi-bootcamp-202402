@@ -1,0 +1,11 @@
+.round-button {
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 10px 0;
+}
+
+.cancel-button {
+  background-color: smoke;
+}
+
+/*# sourceMappingURL=CancelButton.css.map */

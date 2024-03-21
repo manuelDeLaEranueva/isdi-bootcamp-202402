@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+}
+
+main {
+  margin: 0;
+  padding: 0 5vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.round-button {
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 10px 0;
+}
+
+/*# sourceMappingURL=index.css.map */
