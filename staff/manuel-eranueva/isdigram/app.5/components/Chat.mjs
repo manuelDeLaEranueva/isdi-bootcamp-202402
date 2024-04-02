@@ -22,7 +22,7 @@ class Chat extends Component {
 
             usernameTitle.setText(user.username)
 
-            if (!this.messageList) {
+            if (!this._messageList) {
                 this._messageList = new MessageList(user.id)
                 sendMessageForm = new SendMessageForm(user.id)
 
@@ -35,22 +35,25 @@ class Chat extends Component {
                 const oldMessageList = this._messageList
                 const oldSendMessageForm = sendMessageForm
 
-                this._messageList = new MessageList(user.id)
+                const newMessageList = new MessageList(user.id)
                 sendMessageForm = new SendMessageForm(user.id)
 
                 sendMessageForm.onSendMessage(() => this._messageList.refresh())
 
-                this.replace(oldMessageList, this._messageList)
+                this.replace(oldMessageList, newMessageList)
                 this.replace(oldSendMessageForm, sendMessageForm)
+
+                this._messageList = newMessageList
             }
         })
 
         this.add(userList)
+
+        Chat.active = true
     }
 
-    stopAutoRefresh() {
-        if (this._messageList)
-            this._messageList.stopAutoRefresh()
+    static set active(status) {
+        MessageList.active = status
     }
 }
 

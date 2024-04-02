@@ -23,7 +23,7 @@ class UserList extends Component {
                 else
                     userItem.addClass('user-list__item--offline')
 
-                userItem.onClick(() => this._onUserClickCallback(user.id))
+                userItem.onClick(() => this._onUserClickCallback(user))
 
                 this.add(userItem)
             })

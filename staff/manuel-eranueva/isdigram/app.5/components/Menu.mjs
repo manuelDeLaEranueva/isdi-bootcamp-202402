@@ -50,7 +50,7 @@ class Menu extends Component {
     onHomeClick(callback) {
         if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
-        this._onHomeClickCallback = callback()
+        this._onHomeClickCallback = callback
     }
 
     onLogoutClick(callback) {

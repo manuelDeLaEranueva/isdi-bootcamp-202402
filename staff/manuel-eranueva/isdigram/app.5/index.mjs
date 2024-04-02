@@ -35,11 +35,10 @@ else {
     root.add(home)
 }
 
-//helper
+// helper
 
 function buildHome() {
     home = new Home
 
     home.onLogout(() => root.replace(home, login))
 }
-

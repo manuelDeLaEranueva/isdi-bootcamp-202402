@@ -8,6 +8,7 @@ import PostList from '../components/PostList.mjs'
 import Footer from '../components/Footer.mjs'
 import CreatePost from '../components/CreatePost.mjs'
 import Chat from '../components/Chat.mjs'
+import EditPost from '../components/EditPost.mjs'
 
 class Home extends Component {
     constructor() {
@@ -31,26 +32,30 @@ class Home extends Component {
         const chat = new Chat
 
         menu.onChatClick(() => {
-            postList.stopAutoRefresh()
+            PostList.active = false
 
             this.remove(postList)
             this.remove(footer)
+
+            Chat.active = true
 
             this.add(chat)
         })
 
         menu.onHomeClick(() => {
-            chat.stopAutoRefresh()
+            Chat.active = false
 
             this.remove(chat)
+
+            PostList.active = true
 
             this.add(postList)
             this.add(footer)
         })
 
         menu.onLogoutClick(() => {
-            postList.stopAutoRefresh()
-            chat.stopAutoRefresh()
+            PostList.active = false
+            Chat.active = false
 
             this._onLogoutCallback()
         })
@@ -58,6 +63,22 @@ class Home extends Component {
         this.add(menu)
 
         const postList = new PostList
+
+        postList.onEditPostClick(post => {
+            if (!EditPost.active) {
+                const editPost = new EditPost(post)
+
+                editPost.onCancelClick(() => this.remove(editPost))
+
+                editPost.onPostEdited(() => {
+                    this.remove(editPost)
+
+                    postList.refresh()
+                })
+
+                this.add(editPost)
+            }
+        })
 
         this.add(postList)
 
@@ -85,10 +106,10 @@ class Home extends Component {
     }
 
     onLogout(callback) {
-        if (typeof callback !== 'callback') throw new TypeError('callback is not a function')
+        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
         this._onLogoutCallback = callback
     }
 }
 
-export default Home
+export default Home 
