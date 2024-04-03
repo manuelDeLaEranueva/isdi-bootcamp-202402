@@ -1,11 +1,9 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
     "test": "npx mocha data"
   },
   "keywords": [],
@@ -14,8 +12,5 @@
   "devDependencies": {
     "chai": "^5.1.0",
     "mocha": "^10.4.0"
-  },
-  "dependencies": {
-    "express": "^4.19.2"
   }
 }
