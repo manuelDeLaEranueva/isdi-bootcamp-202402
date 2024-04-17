@@ -1,47 +1,47 @@
 import { logger, showFeedback } from '../utils'
 
+import CancelButton from './library/CancelButton'
+
 import logic from '../logic'
+import SubmitButton from './library/SubmitButton'
 
-import { Component } from 'react'
+import './EditPost.sass'
 
-class Post extends Component {
-    constructor() {
-        logger.debug('Post')
+function EditPost(props) {
+    const handleSubmit = event => {
+        event.preventDefault()
 
-        super()
+        const form = event.target
+
+        const text = form.text.value
+
+        logger.debug('EditPost -> handleSubmit', text)
+
+        try {
+            logic.modifyPost(props.post.id, text)
+
+            form.reset()
+
+            props.onPostEdited()
+        } catch (error) {
+            showFeedback(error)
+        }
     }
 
-    handleDeleteClick = postId => {
-        if (confirm('delete post?'))
-            try {
-                logic.removePost(postId)
+    const handleCancelClick = () => props.onCancelClick()
 
-                this.props.onDeleted()
-            } catch (error) {
-                showFeedback(error)
-            }
-    }
+    logger.debug('EditPost -> render')
 
-    handleEditClick = post => this.props.onEditClick(post)
+    return <section className="edit-post">
+        <form onSubmit={handleSubmit}>
+            <label>Text</label>
+            <input id="text" type="text" defaultValue={props.post.text} />
 
-    render() {
-        const { item: post } = this.props
+            <SubmitButton>Save</SubmitButton>
+        </form>
 
-        return <article key={post.id}>
-            <h3>{post.author.username}</h3>
-
-            <img src={post.image} />
-
-            <p>{post.text}</p>
-
-            <time>{post.date}</time>
-
-            {logic.getLoggedInUserId() === post.author.id && <>
-                <button onClick={() => this.handleDeletedClick(post.id)}>🗑️</button>
-                <button onClick={() => this.handleDeletedClick(post)}>📝</button>
-            </>}
-        </article>
-    }
+        <CancelButton onClick={handleCancelClick} />
+    </section>
 }
 
-export default Post
+export default EditPost

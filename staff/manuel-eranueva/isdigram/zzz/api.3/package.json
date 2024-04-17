@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node index.mjs",
+    "test": "npx mocha data",
+    "test-inspect": "npx mocha --inspect-brk data logic"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.3",
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "typescript": "5.4.3"
+  }
+}

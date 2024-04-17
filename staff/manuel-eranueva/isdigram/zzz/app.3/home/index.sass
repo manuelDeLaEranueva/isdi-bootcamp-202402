@@ -1,0 +1,69 @@
+@use '../index'
+
+@use '../library/SubmitButton'
+@use '../library/CancelButton'
+
+@use './components/UserList'
+@use './components/MessageList'
+
+.main
+    margin-bottom: 50px
+
+.footer
+    position: fixed
+    bottom: 0
+    width: 100%
+    height: 50px
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 10px
+    box-sizing: border-box
+    background-color: white
+
+img
+    max-width: 100%
+
+.create-post
+    margin-bottom: 50px
+    position: fixed
+    bottom: 0
+    left: 0
+    background-color: white
+    width: 100%
+    box-sizing: border-box
+    padding: 5vw
+
+.edit-post
+    margin-bottom: 50px
+    position: fixed
+    bottom: 0
+    left: 0
+    background-color: white
+    width: 100%
+    box-sizing: border-box
+    padding: 5vw
+
+.edit-post-blocking-layer
+    background-color: red
+    width: 100vw
+    height: 100vh
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 100
+
+#post-list-section
+    margin-bottom: 50px
+
+#chat-section
+    display: none
+
+#chat-panel
+    display: none
+
+#home-button
+    display: none
+
+#menu-nav
+    display: flex

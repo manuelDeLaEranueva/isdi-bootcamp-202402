@@ -1,0 +1,1 @@
+curl -H "Authorization: Barer <token>" http://localhost:8080/posts -v
