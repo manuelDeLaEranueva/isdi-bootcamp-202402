@@ -29,6 +29,7 @@ function loginUser(username, password) {
                     throw new constructor(message)
                 })
         })
+
 }
 
 export default loginUser

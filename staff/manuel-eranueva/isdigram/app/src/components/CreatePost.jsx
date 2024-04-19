@@ -1,13 +1,15 @@
-import { logger, showFeedback } from '../utils'
+import { logger } from '../utils'
 
 import CancelButton from './library/CancelButton'
 
 import logic from '../logic'
 import SubmitButton from './library/SubmitButton'
 
-// import './CreatePost.sass'
+import { useContext } from '../context'
 
 function CreatePost(props) {
+    const { showFeedback } = useContext()
+
     const handleSubmit = event => {
         event.preventDefault()
 
@@ -23,9 +25,9 @@ function CreatePost(props) {
 
                     props.onPostCreated()
                 })
-                .catch(showFeedback)
+                .catch(error => showFeedback(error.message, 'error'))
         } catch (error) {
-            showFeedback(error)
+            showFeedback(error.message)
         }
     }
 

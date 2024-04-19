@@ -1,0 +1,82 @@
+body
+  margin: 0
+
+main
+  margin: 0
+  padding: 0 5vw
+
+form
+  display: flex
+  flex-direction: column
+
+.round-button
+  border-radius: 5px
+  border: 1px solid black
+  margin: 10px 0
+
+.submit-button
+  background-color: gold
+
+.cancel-button
+  background-color: smoke
+
+#post-list-section
+  margin-bottom: 50px
+
+img
+  max-width: 100%
+
+.create-post
+  margin-bottom: 50px
+  position: fixed
+  bottom: 0
+  left: 0
+  background-color: white
+  width: 100%
+  box-sizing: border-box
+  padding: 5vw
+
+.edit-post
+  margin-bottom: 50px
+  position: fixed
+  bottom: 0
+  left: 0
+  background-color: white
+  width: 100%
+  box-sizing: border-box
+  padding: 5vw
+
+.user-list__item
+  cursor: pointer
+
+  &--online::marker
+    color: limegreen
+
+  &--offline::marker
+    color: tomato
+
+.message-list
+  display: flex
+  flex-direction: column
+  list-style-type: none
+
+  &__item--left
+    align-self: flex-start
+
+  &__item--right
+    align-self: flex-end
+
+.footer
+  position: fixed
+  bottom: 0
+  width: 100%
+  height: 50px
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 10px
+  box-sizing: border-box
+  background-color: white
+
+.main
+  margin-bottom: 50px
