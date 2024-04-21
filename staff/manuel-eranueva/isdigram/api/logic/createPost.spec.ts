@@ -1,8 +1,12 @@
+import dotenv from 'dotenv'
+
 import mongoose from 'mongoose'
 import logic from './index.ts'
 import { expect, use } from 'chai'
 import { errors } from 'com'
 import chaiAsPromised from 'chai-as-promised'
+
+dotenv.config()
 
 use(chaiAsPromised)
 
@@ -15,7 +19,7 @@ import { User, Post } from '../data/index.ts'
 const { NotFoundError } = errors
 
 describe('createPost', () => {
-    before(() => mongoose.connect('mongodb://localhost:27017/test'))
+    before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
 
     it('creates post with image and text from existing user', () =>
         User.deleteMany()

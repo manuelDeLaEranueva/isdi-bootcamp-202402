@@ -1,17 +1,19 @@
-import mongoose, { mongo } from 'mongoose'
+import dotenv from 'dotenv'
 
-const { Types: { ObjectId } } = mongoose
-
+import mongoose from 'mongoose'
 import { User } from '../data/index.ts'
 
 import logic from './index.ts'
 import { expect } from 'chai'
 import { errors } from 'com'
 
+dotenv.config()
+
+const { Types: { ObjectId } } = mongoose
 const { NotFoundError } = errors
 
 describe('retrieveUser', () => {
-    before(() => mongoose.connect('mongodb://localhost:27017/test'))
+    before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
 
     it('retrieves existing user', () =>
         User.deleteMany()
