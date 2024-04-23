@@ -1,6 +1,8 @@
-import logic from '../logic'
+// import { logger } from '../utils'
 
-import { useContext } from '../context'
+import logic from '../src/logic'
+
+import { useContext } from '../src/context'
 
 function Register({ onUserRegistered, onLoginClick }) {
     const { showFeedback } = useContext()
@@ -11,13 +13,12 @@ function Register({ onUserRegistered, onLoginClick }) {
         const form = event.target
 
         const name = form.name.value
-        const birthdate = form.birthdate.value
         const email = form.email.value
         const username = form.username.value
         const password = form.password.value
 
         try {
-            logic.registerUser(name, birthdate, email, username, password)
+            logic.registerUser(name, email, username, password)
                 .then(() => {
                     form.reset()
 
@@ -35,7 +36,7 @@ function Register({ onUserRegistered, onLoginClick }) {
         onLoginClick()
     }
 
-    logger.debug('Register -> render')
+    // logger.debug('Register -> render')
 
     return <main>
         <h1>Register</h1>
@@ -43,9 +44,6 @@ function Register({ onUserRegistered, onLoginClick }) {
         <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name</label>
             <input type="text" id="name" />
-
-            <label htmlFor="birthdate">Age</label>
-            <input type="date" id="birthdate" />
 
             <label htmlFor="email">E-mail</label>
             <input type="email" id="email" />

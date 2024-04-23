@@ -1,12 +1,12 @@
+import { validate, errors } from 'com'
 
-function registerUser(name, birthdate, email, username, password) {
+function registerUser(name, email, username, password) {
     validate.text(name, 'name')
-    validate.date(birthdate, 'birthdate')
     validate.email(email)
     validate.text(username, 'username', true)
     validate.password(password)
 
-    const user = { name, birthdate, email, username, password }
+    const user = { name, email, username, password }
 
     const json = JSON.stringify(user)
 

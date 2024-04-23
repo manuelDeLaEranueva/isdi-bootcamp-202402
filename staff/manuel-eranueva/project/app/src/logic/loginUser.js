@@ -1,3 +1,5 @@
+import { validate, errors } from 'com'
+
 function loginUser(username, password) {
     validate.text(username, 'username', true)
     validate.password(password)

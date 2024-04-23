@@ -6,70 +6,45 @@ const { Types: { ObjectId } } = Schema
 
 type UserType = {
     name: string
-    birthdate: Date
     email: string
     username: string
     password: string
+    avatar: string
 }
-
 
 const user = new Schema({
     name: {
         type: String,
         required: true
     },
-    birthdate: {
-        type: Date,
-        required: true
-    },
+
     email: {
         type: String,
         required: true,
         unique: true
     },
+
     username: {
         type: String,
-        required: true,
+        require: true,
         unique: true
     },
+
     password: {
         type: String,
-        required: true
-    }
-})
-
-type PostType = {
-    author: ObjectId
-    image: string
-    text: string
-    date: Date
-}
-
-const post = new Schema({
-    author: {
-        type: ObjectId,
-        ref: 'User',
-        required: true
+        require: true,
     },
-    image: {
+
+    avatar: {
         type: String,
-        required: true
-    },
-    text: {
-        type: String
-    },
-    date: {
-        type: Date,
-        required: true
+
     }
+
 })
 
 const User = model<UserType>('User', user)
-const Post = model<PostType>('Post', post)
 
 export {
     UserType,
-    User,
-    PostType,
-    Post
+    User
 }
