@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import { User } from '.'
 
 
-mongoose.connect('mongodb://localhost:27017/isdigram')
+mongoose.connect('mongodb://localhost:27017/project')
     .then(() => User.deleteMany())
     .then(() => User.create({ name: 'Pepe Roni', email: 'pepe@roni.com', username: 'peperoni', password: '123qwe123' }))
 

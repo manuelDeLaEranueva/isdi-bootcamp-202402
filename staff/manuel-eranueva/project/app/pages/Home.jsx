@@ -11,6 +11,7 @@ import { useContext } from '../src/context'
 
 function Home({ onUserLoggedOut }) {
     const [user, setUser] = useState(null)
+    const [view, setView] = useState(null)
 
 
     useEffect(() => {
@@ -22,6 +23,8 @@ function Home({ onUserLoggedOut }) {
             console.log(error)
         }
     }, [])
+
+    const clearView = () => setView(null)
 
     const handleLogoutClick = () => {
         try {
@@ -37,6 +40,11 @@ function Home({ onUserLoggedOut }) {
     return <>
         <header >
             {user && <h1>Hello, {user.name}!</h1>}
+            <nav>
+                <button onClick={handleLogoutClick}>🚪</button>
+            </nav>
+
+
 
         </header>
     </>

@@ -39,7 +39,7 @@ describe('authenticateUser', () => {
     it('fails on existing user and incorrect username', () =>
         User.deleteMany()
             .then(() => User.create({ name: 'ego', email: 'hola@buenas.com', username: 'elmanu', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('Mikyse', '123qwe123'))
+            .then(() => logic.authenticateUser('elmanu', '123qwe123'))
             .catch(error => {
                 expect(error).to.be.instanceOf(NotFoundError)
                 expect(error.message).to.equal('user not found')
