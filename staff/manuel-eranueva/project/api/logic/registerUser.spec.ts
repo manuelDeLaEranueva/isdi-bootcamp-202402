@@ -23,7 +23,7 @@ describe('registerUser', () => {
                 expect(!!user).to.be.true
                 expect(user.name).to.equal('Ego')
                 expect(user.email).to.equal('hola@buenas.com')
-                expect(user.username).to.equal('ego')
+                expect(user.username).to.equal('Ego')
                 expect(user.password).to.equal('123qwe123')
                 expect(user.avatar).to.be.null
             })

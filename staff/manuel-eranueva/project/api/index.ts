@@ -48,15 +48,15 @@ mongoose.connect(MONGODB_URL)
                 logic.registerUser(name, email, username, password)
                     .then(() => res.status(201).send())
                     .catch(error => {
-                        // if (error instanceof SystemError) {
-                        //     logger.error(error.message)
+                        if (error instanceof SystemError) {
+                            logger.error(error.message)
 
-                        //     res.status(500).json({ error: error.constructor.name, message: error.message })
-                        // } else if (error instanceof DuplicityError) {
-                        //     logger.warn(error.message)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        } else if (error instanceof DuplicityError) {
+                            logger.warn(error.message)
 
-                        //     res.status(409).json({ error: error.constructor.name, message: error.message })
-                        // }
+                            res.status(409).json({ error: error.constructor.name, message: error.message })
+                        }
                         console.log(error)
                     })
             } catch (error) {

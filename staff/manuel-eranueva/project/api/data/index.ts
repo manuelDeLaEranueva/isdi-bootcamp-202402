@@ -2,7 +2,26 @@ import mongoose, { ObjectId } from 'mongoose'
 
 const { Schema, model } = mongoose
 
-const { Types: { ObjectId } } = Schema
+type BookType = {
+    image: string
+    name: string
+    author: string
+}
+
+const book = new Schema({
+    image: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    }
+})
 
 type UserType = {
     name: string
@@ -26,13 +45,13 @@ const user = new Schema({
 
     username: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
 
     password: {
         type: String,
-        require: true,
+        required: true,
     },
 
     avatar: {
@@ -43,8 +62,11 @@ const user = new Schema({
 })
 
 const User = model<UserType>('User', user)
+const Book = model<BookType>('Book', book)
 
 export {
     UserType,
-    User
+    User,
+    BookType,
+    Book
 }

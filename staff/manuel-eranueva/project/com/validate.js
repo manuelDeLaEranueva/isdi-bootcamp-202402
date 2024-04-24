@@ -1,5 +1,6 @@
 import { ContentError, UnauthorizedError } from './errors.js';
 import util from './util.js';
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[A-Za-z])[A-Za-z0-9]+$/;
 const URL_REGEX = /^(http|https):\/\//;
@@ -12,6 +13,12 @@ const validate = {
         if (checkEmptySpaceInside)
             if (text.includes(' '))
                 throw new ContentError(explain + ' ' + text + ' has empty spaces');
+    },
+    date(date, explain) {
+        if (typeof date !== 'string')
+            throw new TypeError(explain + ' ' + date + ' is not a string');
+        if (!DATE_REGEX.test(date))
+            throw new ContentError(explain + ' ' + date + ' does not have a valid format');
     },
     email(email, explain = 'email') {
         if (!EMAIL_REGEX.test(email))

@@ -5,11 +5,11 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-// import Feedback from './components/Feedback'
 import { useState } from 'react'
 import { Context } from './context'
 // import Confirm from './components/Confirm'
 import { errors } from 'com'
+import Feedback from './components/Feedback'
 
 const { UnauthorizedError } = errors
 

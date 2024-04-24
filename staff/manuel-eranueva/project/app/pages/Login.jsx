@@ -1,4 +1,4 @@
-// import { logger } from '../utils'
+import { logger } from '../utils'
 
 import logic from '../src/logic'
 
@@ -15,7 +15,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         const username = form.username.value
         const password = form.password.value
 
-        // logger.debug('Login -> handleSubmit', username, password)
+        logger.debug('Login -> handleSubmit', username, password)
 
         try {
             logic.loginUser(username, password)
