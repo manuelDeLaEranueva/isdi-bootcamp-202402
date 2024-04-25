@@ -23,7 +23,7 @@ function Register({ onUserRegistered, onLoginClick }) {
 
                     onUserRegistered()
                 })
-                .catch(error => showFeedback(error, 'error'))
+                .catch(error => showFeedback(error, 'error')) //console.alert()
         } catch (error) {
             showFeedback(error)
         }
