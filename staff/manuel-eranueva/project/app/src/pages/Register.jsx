@@ -42,8 +42,6 @@ function Register({ onUserRegistered, onLoginClick }) {
         <div className="flex justify-center items-center h-screen bg-[#1B1F47]">
             <main>
 
-                <img className="w-[200px] absolute top-10" src="../../public/Logo-letras-blanco.png" alt="BAFFLE" />
-
                 <form onSubmit={handleSubmit} className="flex flex-col items-center mt-10">
                     <div className="flex flex-col mb-4">
                         <label htmlFor="name" className="text-white mb-1">Name</label>

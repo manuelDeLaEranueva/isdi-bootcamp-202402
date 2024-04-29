@@ -1,15 +1,16 @@
-// import { logger } from './utils'
+import { logger } from './utils'
 
 import logic from './logic'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-import Home from '../pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Home from './pages/Home'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Context } from './context'
 // import Confirm from './components/Confirm'
 import { errors } from 'com'
 import Feedback from './components/Feedback'
+
 
 const { UnauthorizedError } = errors
 
@@ -70,7 +71,7 @@ function App() {
 
     {feedback && <Feedback message={feedback.message} level={feedback.level} onAcceptClick={handleFeedbackAcceptClick} />}
 
-    {confirm && <Confirm message="hola confirm" onCancelClick={handleConfirmCancelClick} onAcceptClick={handleConfirmAcceptClick} />}
+    {confirm && <Confirm message="BUENAS" onCancelClick={handleConfirmCancelClick} onAcceptClick={handleConfirmAcceptClick} />}
   </>
 }
 

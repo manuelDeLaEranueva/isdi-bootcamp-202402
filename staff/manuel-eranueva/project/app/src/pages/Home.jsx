@@ -1,39 +1,48 @@
-import logic from '../logic'
-
-import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Profile from '../components/Profile'
-
-import { useContext } from '../context'
+import logic from '../logic';
+import { useState, useEffect } from 'react';
+import BookList from '../components/BookList';
 
 function Home({ onUserLoggedOut }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
         try {
             logic.retrieveUser()
                 .then(setUser)
-                .catch(error => showFeedback(error, 'error'))
+                .catch(error => console.log(error));
+
+            logic.retrieveBooks()
+                .then(setBooks)
+                .catch(error => console.log(error));
         } catch (error) {
-            showFeedback(error)
+            console.log(error);
         }
-    }, [])
-    return <>
-        <header className="px-[5vw] fixed top-0 bg-white w-full">
-            {user && <h1>Hello, {user.name}!</h1>}
+    }, []);
 
-            <nav>
-                <button onClick={handleLogoutClick}>🚪</button>
-            </nav>
-        </header>
+    const handleLogoutClick = () => {
+        try {
+            logic.logoutUser();
+        } catch (error) {
+            logic.cleanUpLoggedInUserId();
+        } finally {
+            onUserLoggedOut();
+        }
+    };
 
-        <main className="my-[50px] px-[5vw]">
-            <Routes>
-                <Route path="/" element={<PostList stamp={stamp} onEditPostClick={handleEditPostClick} />} />
-                <Route path="/profile/:username" element={<Profile />} />
-            </Routes>
-        </main>
-    </>
+    return (
+        <>
+            <header>
+                {user && <h1>Hello, {user.name}!</h1>}
+                <nav>
+                    <button onClick={handleLogoutClick}>🚪</button>
+                </nav>
+            </header>
+            <main>
+                <BookList books={books} />
+            </main>
+        </>
+    );
 }
 
-export default Home
+export default Home;

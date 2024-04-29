@@ -1,5 +1,5 @@
 import RoundButton from './library/RoundButton'
-import { logger } from '../../utils'
+import { logger } from '../utils'
 
 function Feedback({ message, level, onAcceptClick }) {
     logger[level](message)

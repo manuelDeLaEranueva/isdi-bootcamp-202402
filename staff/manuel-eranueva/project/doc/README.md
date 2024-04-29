@@ -20,7 +20,6 @@ Although theres a huge number of public libraries in Barcelona, they usually don
 - connect with other users using the cards
 - update both libraries (books i have and books i want to read)
 - open a chat with other user when both of you are interesteed in exchanging
-- see in a map the relative position of the user with wich you are speaking
 
 v0.1
 
@@ -31,6 +30,7 @@ v0.1
 - check wich books you are actually sharing and when they should be returned
 - share wich books you have to retrieve and when
 - rate users
+- see in a map the relative position of the user with wich you are speaking
 
 ### UI Design
 
@@ -65,42 +65,35 @@ User
 - profile picture (optional)
 - localization
 
-All Books (main database)
-- id (required)
+Book
+- id (Book.id, required)
 - image (string, required)
 - author (string, required)
 - lenguaje (string, required)
 - title (string, required)
 
-Bookshelf
+All Books (main database)
 - books (objects extracted from 'All Books')
+
+Your Bookshelf
+- user id (required)
+- books you own (objects extracted from 'All Books')
 - availability (boolean, required, default true)
 
 Wanna read
+- user id (required)
 - books (objects extracted from 'All Books')
 
-Black card (from me to other user)
-- books (objects extracted from 'All Books')
+Rainbow card 
+- user id (required)
+- both books (objects extracted from 'All Books')
 - proximity
-- other user
-- date of creation
-
-White card (from other user to me)
-- books (objects extracted from 'All Books')
-- proximity
-- other user
-- date of creation
-
-Rainbow card (bidirectional)
-- books (objects extracted from 'All Books')
-- proximity
-- other user
+- user
 - date of creation
 
 Chat
-- id (required)
-- user (string, required)
-- date (date, required)
+- user ids (required)
+- both users (string, required)
 - messages (string, required)
 
 Review

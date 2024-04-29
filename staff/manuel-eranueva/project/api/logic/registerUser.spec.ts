@@ -66,5 +66,6 @@ describe('registerUser', () => {
         expect(errorThrown).to.be.instanceOf(Error)
         expect(errorThrown.message).to.equal('name >< is empty or blank')
     })
+    after(() => mongoose.disconnect())
 
 })
