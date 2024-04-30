@@ -4,6 +4,7 @@ import logic from './logic'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
+
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Context } from './context'

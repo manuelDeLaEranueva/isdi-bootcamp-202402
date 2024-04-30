@@ -1,5 +1,3 @@
-
-
 import { validate, errors } from 'com'
 
 import { User, Book } from '../data/index.ts'
