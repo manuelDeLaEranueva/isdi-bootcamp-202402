@@ -51,5 +51,5 @@ describe('retrieveBooks', () => {
                     )
             )
     )
-    after(() => mongoose.disconnect())
+
 })

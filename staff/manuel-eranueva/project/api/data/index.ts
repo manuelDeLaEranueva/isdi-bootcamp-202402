@@ -2,6 +2,8 @@ import mongoose, { ObjectId } from 'mongoose'
 
 const { Schema, model } = mongoose
 
+const { Types: { ObjectId } } = Schema
+
 type BookType = {
     image: string
     name: string
@@ -19,6 +21,33 @@ const book = new Schema({
     },
     author: {
         type: String,
+        required: true
+    }
+})
+
+type CardType = {
+    image: string
+    name: string
+    author: string
+    owner: ObjectId
+}
+
+const card = new Schema({
+    image: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    },
+    owner: {
+        type: ObjectId,
+        ref: 'User',
         required: true
     }
 })
@@ -63,10 +92,13 @@ const user = new Schema({
 
 const User = model<UserType>('User', user)
 const Book = model<BookType>('Book', book)
+const Card = model<CardType>('Card', card)
 
 export {
     UserType,
     User,
     BookType,
-    Book
+    Book,
+    CardType,
+    Card
 }
