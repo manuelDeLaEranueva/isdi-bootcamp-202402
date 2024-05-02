@@ -1,40 +1,58 @@
 import React, { useState, useEffect } from 'react'
 import logic from '../logic'
 
-function BookList({ books, onSelectedBook }) {
-    const [searchedBooks, setSearchedBooks] = useState([]);
+function BookList({ actualBook }) {
+    const [searchedBooks, setSearchedBooks] = useState([])
+    const [books, setBooks] = useState([])
+    const [query, setQuery] = useState('')
 
-    const handleSearch = (letter) => {
-        const searched = books.filter(book =>
-            book.name.toLowerCase().includes(letter.toLowerCase())
-        );
-        setSearchedBooks(searched);
-    };
+    useEffect(() => {
+        logic.retrieveBooks()
+            .then(books => {
+                setBooks(books)
+                setSearchedBooks(books)
+            })
+            .catch(error => console.log(error))
+    }, [])
+
+    const handleSelectedBook = book => {
+        console.log(book)
+        actualBook(book)
+    }
+
+    const handleSearch = event => {
+        const letter = event.target.value
+        setQuery(letter)
+        if (!letter) {
+            setSearchedBooks(books)
+        } else {
+            const searched = books.filter(book =>
+                book.name.toLowerCase().includes(letter.toLowerCase())
+            )
+            setSearchedBooks(searched)
+        }
+    }
 
     return (
         <div>
-            {/* ... search input and other elements ... */}
+            <input
+                type='text'
+                value={query}
+                placeholder='Write title or author'
+                onChange={handleSearch}
+                className="px-4 py-2 border rounded-md pr-10"
+            />
             <ul>
-                {searchedBooks.length > 0 ? (
-                    searchedBooks.map(book => (
-                        <li key={book._id}>
-                            <a href="#" onClick={() => onSelectedBook(book)} className="text-black font-semibold">
-                                {book.name}
-                            </a>
-                        </li>
-                    ))
-                ) : (
-                    books.map(book => (
-                        <li key={book._id}>
-                            <a href="#" onClick={() => onSelectedBook(book)} className="text-white font-semibold">
-                                {book.name}
-                            </a>
-                        </li>
-                    ))
-                )}
+                {searchedBooks.map(book => (
+                    <li key={book._id}>
+                        <a href="#" onClick={() => handleSelectedBook(book)} className="text-black font-semibold">
+                            {book.name}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </div>
-    );
+    )
 }
 
-export default BookList;
+export default BookList
