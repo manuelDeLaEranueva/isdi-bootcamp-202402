@@ -32,6 +32,7 @@ mongoose.connect('mongodb://localhost:27017/project')
             country: 'USA'
         }))
 
+
     .then(() => mongoose.disconnect())
     .then(() => console.log('populated'))
     .catch(console.error)

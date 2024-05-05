@@ -1,10 +1,11 @@
 import { validate, errors } from 'com'
-import { User, Card } from '../data/index.ts'
+import { User, Card, Book } from '../data/index.ts'
 
 const { SystemError, NotFoundError } = errors
 
-function createCard(userId: string, image: string, name: string, author: string): Promise<void> {
-    validate.url(image, 'image')
+function createCard(userId: string, bookId: string): Promise<void> {
+    validate.text(userId, 'userId', true)
+    validate.text(bookId, 'bookId', true)
 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
@@ -12,9 +13,14 @@ function createCard(userId: string, image: string, name: string, author: string)
             if (!user)
                 throw new NotFoundError('user not found')
 
-            return Card.create({ image, name, author, owner: user._id })
-                .catch((error) => { throw new Error(error.message) })
+            return Book.findById(bookId)
+                .then(book => {
+                    if (!book)
+                        throw new NotFoundError('book not found')
 
+                    return Card.create({ book: book._id, owner: user._id.toString() })
+                        .catch((error) => { throw new Error(error.message) })
+                })
         })
         .then(card => { })
 }

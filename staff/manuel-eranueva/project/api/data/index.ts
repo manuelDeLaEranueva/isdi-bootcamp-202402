@@ -26,23 +26,14 @@ const book = new Schema({
 })
 
 type CardType = {
-    image: string
-    name: string
-    author: string
+    book: ObjectId
     owner: ObjectId
 }
 
 const card = new Schema({
-    image: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    author: {
-        type: String,
+    book: {
+        type: ObjectId,
+        ref: 'Book',
         required: true
     },
     owner: {
