@@ -16,9 +16,9 @@ function BookList({ onBookSelect }) {
     }, []);
 
     const handleSelectedBook = (event, book) => {
-        event.preventDefault();
-        onBookSelect(book);
-    };
+        event.preventDefault()
+        onBookSelect(book)
+    }
 
     const handleSearch = event => {
         const letter = event.target.value;

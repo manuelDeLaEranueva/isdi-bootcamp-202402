@@ -10,12 +10,11 @@ function Home({ onUserLoggedOut }) {
     const [popupOpen, setPopupOpen] = useState(false);
 
     useEffect(() => {
-        // Retrieve user data
         logic.retrieveUser()
             .then(user => setUser(user))
             .catch(error => console.error('Failed to retrieve user:', error));
 
-        // Retrieve book data
+
         logic.retrieveBooks()
             .then(books => setBooks(books))
             .catch(error => console.error('Failed to retrieve books:', error));
@@ -41,6 +40,19 @@ function Home({ onUserLoggedOut }) {
         setPopupOpen(false);
     };
 
+    const handleCreateCard = (book) => {
+
+        logic.createCard(book._id, user._id)
+            .then(() => {
+                console.log('Card created successfully');
+
+            })
+            .catch(error => {
+                console.error('Failed to create card:', error);
+
+            });
+    };
+
     return (
         <>
             <header>
@@ -51,7 +63,7 @@ function Home({ onUserLoggedOut }) {
             </header>
             <main>
                 <BookList onBookSelect={handleSelectedBook} books={books} />
-                {popupOpen && selectedBook && <Popup book={selectedBook} onClose={handleClosePopup} />}
+                {popupOpen && selectedBook && <Popup book={selectedBook} onClose={handleClosePopup} onCreateCard={handleCreateCard} />}
             </main>
         </>
     );

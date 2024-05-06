@@ -1,18 +1,17 @@
-import mongoose, { isObjectIdOrHexString } from 'mongoose'
-
-import { User, Book } from '.'
-
+import mongoose from 'mongoose';
+import { User, Book, Card } from '.';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => User.deleteMany())
-    .then(() => User.create({ name: 'Pepe Roni', email: 'pepe@roni.com', username: 'peperoni', password: '123qwe123' }))
+    .then(() => User.create({ name: 'manuel', email: 'pepe@roni.com', username: 'manuel', password: '123qwe123' }))
     .then(() => Book.deleteMany())
-    .then(() => Book.create({
-        image: 'https://example.com/image17.jpg',
-        name: 'One Piece',
-        author: 'Eiichiro Oda',
-        country: 'Japan'
-    },
+    .then(() => Book.create([
+        {
+            image: 'https://example.com/image17.jpg',
+            name: 'One Piece',
+            author: 'Eiichiro Oda',
+            country: 'Japan'
+        },
         {
             image: 'https://example.com/image18.jpg',
             name: 'Saga',
@@ -30,9 +29,26 @@ mongoose.connect('mongodb://localhost:27017/project')
             name: 'The Walking Dead',
             author: 'Robert Kirkman',
             country: 'USA'
-        }))
+        }
+    ]))
+    .then(() => Card.deleteMany())
+    .then(() => {
 
+        return Book.findOne({ name: 'One Piece' })
+            .then((book) => {
+                if (!book) throw new Error('Book not found');
 
+                return User.findOne({ name: 'manuel' })
+                    .then((user) => {
+                        if (!user) throw new Error('User not found');
+
+                        return Card.create({
+                            book: book._id,
+                            owner: user._id
+                        });
+                    });
+            });
+    })
     .then(() => mongoose.disconnect())
     .then(() => console.log('populated'))
-    .catch(console.error)
+    .catch(console.error);

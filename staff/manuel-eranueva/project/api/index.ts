@@ -196,9 +196,9 @@ mongoose.connect(MONGODB_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                const { image, name, author } = req.body
+                const { bookId } = req.body
 
-                logic.createCard(userId as string, image, name, author)
+                logic.createCard(userId as string, bookId as string)
                     .then(() => res.status(201).send())
                     .catch(error => {
                         if (error instanceof SystemError) {

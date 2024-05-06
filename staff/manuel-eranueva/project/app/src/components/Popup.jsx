@@ -1,22 +1,21 @@
 import React from 'react'
-import logic from '../logic'
 
-import { useContext } from '../context'
+function Popup({ book, onClose, onCreateCard }) {
+    const handleCreateCardClick = () => {
+        onCreateCard(book);
+    };
 
-function Popup({ book, onClose }) {
     return (
         <div className="popup">
             <div className="popup-content">
-                <button className="close-button" onClick={onClose}>X</button>
+                <span className="close" onClick={onClose}>&times;</span>
                 <h2>{book.name}</h2>
-                <p>Author: {book.author}</p>
-                <p>Description: {book.image}</p>
-
+                <p>{book.author}</p>
+                <p>{book.image}</p>
+                <button onClick={handleCreateCardClick}>Create Card</button>
             </div>
         </div>
-
-
-    )
+    );
 }
 
 export default Popup
