@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import logic from '../logic'
+import React, { useState, useEffect } from 'react';
+import logic from '../logic';
 
-function BookList({ actualBook }) {
-    const [searchedBooks, setSearchedBooks] = useState([])
-    const [books, setBooks] = useState([])
-    const [query, setQuery] = useState('')
+function BookList({ onBookSelect }) {
+    const [searchedBooks, setSearchedBooks] = useState([]);
+    const [books, setBooks] = useState([]);
+    const [query, setQuery] = useState('');
 
     useEffect(() => {
         logic.retrieveBooks()
             .then(books => {
-                setBooks(books)
-                setSearchedBooks(books)
+                setBooks(books);
+                setSearchedBooks(books);
             })
-            .catch(error => console.log(error))
-    }, [])
+            .catch(error => console.error(error));
+    }, []);
 
-    const handleSelectedBook = book => {
-        console.log(book)
-        actualBook(book)
-    }
+    const handleSelectedBook = (event, book) => {
+        event.preventDefault();
+        onBookSelect(book);
+    };
 
     const handleSearch = event => {
-        const letter = event.target.value
-        setQuery(letter)
+        const letter = event.target.value;
+        setQuery(letter);
         if (!letter) {
-            setSearchedBooks(books)
+            setSearchedBooks(books);
         } else {
             const searched = books.filter(book =>
                 book.name.toLowerCase().includes(letter.toLowerCase())
-            )
-            setSearchedBooks(searched)
+            );
+            setSearchedBooks(searched);
         }
-    }
+    };
 
     return (
         <div>
@@ -45,14 +45,15 @@ function BookList({ actualBook }) {
             <ul>
                 {searchedBooks.map(book => (
                     <li key={book._id}>
-                        <a href="#" onClick={() => handleSelectedBook(book)} className="text-black font-semibold">
+                        {/* Utiliza una función anónima para pasar el evento y el libro */}
+                        <a href="#" onClick={(event) => handleSelectedBook(event, book)} className="text-black font-semibold">
                             {book.name}
                         </a>
                     </li>
                 ))}
             </ul>
         </div>
-    )
+    );
 }
 
-export default BookList
+export default BookList;
