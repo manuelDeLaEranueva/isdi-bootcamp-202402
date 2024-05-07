@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import logic from '../logic';
-import BookList from '../components/BookList';
-import Popup from '../components/Popup';
+import React, { useState, useEffect } from 'react'
+import logic from '../logic'
+import BookList from '../components/BookList'
+import Popup from '../components/Popup'
+import CreateCard from '../components/CreateCard'
 
 function Home({ onUserLoggedOut }) {
     const [user, setUser] = useState(null)
@@ -13,12 +14,12 @@ function Home({ onUserLoggedOut }) {
     useEffect(() => {
         logic.retrieveUser()
             .then(user => setUser(user))
-            .catch(error => console.error('Failed to retrieve user:', error));
+            .catch(error => console.error('Failed to retrieve user:', error))
 
 
         logic.retrieveBooks()
             .then(books => setBooks(books))
-            .catch(error => console.error('Failed to retrieve books:', error));
+            .catch(error => console.error('Failed to retrieve books:', error))
     }, []);
 
     const handleLogoutClick = () => {

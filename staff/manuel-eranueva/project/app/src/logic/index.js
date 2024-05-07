@@ -8,6 +8,7 @@ import cleanUpLoggedInUserId from './cleanUpLoggedInUserId'
 import retrieveBooks from './retrieveBooks'
 import deleteCard from './deleteCard'
 import createCard from './createCard'
+import retrieveCards from './retrieveCards'
 
 
 
@@ -22,7 +23,8 @@ const logic = {
     cleanUpLoggedInUserId,
     retrieveBooks,
     deleteCard,
-    createCard
+    createCard,
+    retrieveCards
 }
 
 export default logic
