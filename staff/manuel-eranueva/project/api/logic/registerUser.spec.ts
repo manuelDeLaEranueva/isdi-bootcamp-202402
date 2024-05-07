@@ -25,7 +25,7 @@ describe('registerUser', () => {
                 expect(user.email).to.equal('hola@buenas.com')
                 expect(user.username).to.equal('Ego')
                 expect(user.password).to.equal('123qwe123')
-                expect(user.avatar).to.be.null
+
             })
     )
 

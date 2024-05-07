@@ -48,7 +48,7 @@ type UserType = {
     email: string
     username: string
     password: string
-    avatar: string
+
 }
 
 const user = new Schema({
@@ -72,13 +72,7 @@ const user = new Schema({
     password: {
         type: String,
         required: true,
-    },
-
-    avatar: {
-        type: String,
-
     }
-
 })
 
 const User = model<UserType>('User', user)

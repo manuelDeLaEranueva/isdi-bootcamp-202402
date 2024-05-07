@@ -1,32 +1,42 @@
-import React from 'react';
-import RoundButton from './library/RoundButton';
-import logic from '../logic';
-import { useContext } from '../context';
+import { logger } from '../utils'
 
-function CreateCard({ book, user, onCardCreated }) {
+import React from 'react'
+import RoundButton from './library/RoundButton'
+import logic from '../logic'
+import { useContext } from '../context'
+
+function CreateCard(props) {
     const { showFeedback } = useContext();
 
     const handleSubmit = event => {
-        event.preventDefault();
+        event.preventDefault()
 
         try {
-            logic.createCard(user.id, book.id)
+            logic.createCard()
                 .then(() => {
-                    onCardCreated();
+                    form.reset()
+
+                    props.onCardCreated()
                 })
                 .catch(error => showFeedback(error, 'error'));
         } catch (error) {
             showFeedback(error);
         }
-    };
+    }
+
+    const handleCancelClick = () => props.onCancelClick()
+
+    logger.debug('CreateCard -> render')
 
     return (
         <section className="mb-[50px] fixed bottom-0 left-0 bg-white w-full box-border p-[5vw]">
             <form onSubmit={handleSubmit} className="flex flex-col ">
                 <RoundButton type="submit">Create</RoundButton>
             </form>
+
+            <CancelButton onClick={handleCancelClick} />
         </section>
-    );
+    )
 }
 
-export default CreateCard;
+export default CreateCard

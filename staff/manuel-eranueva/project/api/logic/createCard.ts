@@ -19,7 +19,7 @@ function createCard(userId: string, bookId: string): Promise<void> {
                         throw new NotFoundError('book not found')
 
                     return Card.create({ book: book._id, owner: user._id })
-                        .catch((error) => { throw new Error(error.message) })
+                        .catch((error) => { throw new SystemError(error.message) })
                 })
         })
         .then(card => { })

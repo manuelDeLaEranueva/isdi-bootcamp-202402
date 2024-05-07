@@ -4,10 +4,11 @@ import BookList from '../components/BookList';
 import Popup from '../components/Popup';
 
 function Home({ onUserLoggedOut }) {
-    const [user, setUser] = useState(null);
-    const [books, setBooks] = useState([]);
+    const [user, setUser] = useState(null)
+    const [books, setBooks] = useState([])
     const [selectedBook, setSelectedBook] = useState(null);
-    const [popupOpen, setPopupOpen] = useState(false);
+    const [popupOpen, setPopupOpen] = useState(false)
+    const [card, setCard] = useState(null)
 
     useEffect(() => {
         logic.retrieveUser()
