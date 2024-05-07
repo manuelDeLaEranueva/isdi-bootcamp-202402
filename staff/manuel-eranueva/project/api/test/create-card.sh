@@ -1,0 +1,1 @@
+curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N…U0MH0.90rTagfCpzknJ11mbVClwigJ8wpQHcBKbx_xgjEz4QU" http://localhost:8080/cards -v

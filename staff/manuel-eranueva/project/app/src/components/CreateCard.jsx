@@ -10,7 +10,7 @@ function CreateCard({ book, user, onCardCreated }) {
         event.preventDefault();
 
         try {
-            logic.createCard(user.id, book._id)
+            logic.createCard(user.id, book.id)
                 .then(() => {
                     onCardCreated();
                 })

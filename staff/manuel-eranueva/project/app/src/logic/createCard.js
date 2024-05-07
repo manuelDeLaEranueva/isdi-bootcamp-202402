@@ -1,5 +1,5 @@
-import { validate, errors } from 'com'
-import { User, Card, CardType, Book, BookType } from '../data/index.js'
+import { errors } from 'com'
+
 
 function createCard() {
 

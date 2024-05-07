@@ -6,7 +6,7 @@ import { User, CardType, Card } from '../data/index.ts'
 
 const { SystemError, NotFoundError } = errors
 
-function retrieveCards(userId: string): Promise<CardType[]> { // Cambia el tipo de retorno a Promise<Card[]>
+function retrieveCards(userId: string): Promise<CardType[]> {
     validate.text(userId, 'userId', true);
 
     return User.findById(userId)
@@ -19,6 +19,6 @@ function retrieveCards(userId: string): Promise<CardType[]> { // Cambia el tipo 
                 .populate('book', 'image name author')
                 .lean()
                 .then(cards => cards.reverse())
-        });
+        })
 }
 export default retrieveCards
