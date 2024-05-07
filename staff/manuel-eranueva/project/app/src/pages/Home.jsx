@@ -3,6 +3,7 @@ import logic from '../logic'
 import BookList from '../components/BookList'
 import Popup from '../components/Popup'
 import CreateCard from '../components/CreateCard'
+import CardList from '../components/CardList'
 
 function Home({ onUserLoggedOut }) {
     const [user, setUser] = useState(null)
@@ -20,40 +21,41 @@ function Home({ onUserLoggedOut }) {
         logic.retrieveBooks()
             .then(books => setBooks(books))
             .catch(error => console.error('Failed to retrieve books:', error))
-    }, []);
+    }, [])
+
+
 
     const handleLogoutClick = () => {
         try {
-            logic.logoutUser();
-            onUserLoggedOut();
+            logic.logoutUser()
+            onUserLoggedOut()
         } catch (error) {
-            console.error('Logout failed:', error);
-            logic.cleanUpLoggedInUserId();
+            console.error('Logout failed:', error)
+            logic.cleanUpLoggedInUserId()
         }
-    };
+    }
 
     const handleSelectedBook = (book) => {
-        setSelectedBook(book);
-        setPopupOpen(true);
-    };
+        setSelectedBook(book)
+        setPopupOpen(true)
+    }
 
     const handleClosePopup = () => {
-        setSelectedBook(null);
-        setPopupOpen(false);
-    };
-
+        setSelectedBook(null)
+        setPopupOpen(false)
+    }
     const handleCreateCard = (book) => {
 
         logic.createCard(book._id, user._id)
             .then(() => {
-                console.log('Card created successfully');
+                console.log('Card created successfully')
 
             })
             .catch(error => {
-                console.error('Failed to create card:', error);
+                console.error('Failed to create card:', error)
 
-            });
-    };
+            })
+    }
 
     return (
         <>
@@ -68,7 +70,7 @@ function Home({ onUserLoggedOut }) {
                 {popupOpen && selectedBook && <Popup book={selectedBook} onClose={handleClosePopup} onCreateCard={handleCreateCard} />}
             </main>
         </>
-    );
+    )
 }
 
-export default Home;
+export default Home
