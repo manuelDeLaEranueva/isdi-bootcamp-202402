@@ -16,13 +16,13 @@ describe('createCard', () => {
     it('user creates card', () =>
         Promise.all([
             User.deleteMany(),
-            Book.deleteMany(), 
+            Book.deleteMany(),
             Card.deleteMany()
         ])
             .then(() =>
                 User.create({ name: 'Pepe Roni', email: 'pepe@roni.com', username: 'peperoni', password: '123qwe123' })
                     .then(user =>
-                        Book.create({ image: '...', name: 'Book Name', author: 'Book Author' }) 
+                        Book.create({ image: '...', name: 'Book Name', author: 'Book Author' })
                             .then(book =>
                                 Promise.all([
                                     Card.create({ book: book._id, owner: user._id, image: 'https://m.media-amazon.com/images/I/71lV0Qc6ApL._AC_UF894,1000_QL80_.jpg', name: 'Hierba', author: 'Keum Suk Gendry-Kim' }),
@@ -35,19 +35,21 @@ describe('createCard', () => {
                                                 const card1b = cards.find(card => card.image === card1.image);
                                                 expect(card1b.name).to.equal(card1.name);
                                                 expect(card1b.author).to.equal(card1.author);
-                                                expect(card1b.owner.toString()).to.equal(user._id.toString()); // Corregido: Convertir ObjectId a cadena de caracteres
+                                                expect(card1b.owner.toString()).to.equal(user._id.toString())
+
                                                 const card2b = cards.find(card => card.image === card2.image);
                                                 expect(card2b.name).to.equal(card2.name);
                                                 expect(card2b.author).to.equal(card2.author);
-                                                expect(card2b.owner.toString()).to.equal(user._id.toString()); // Corregido: Convertir ObjectId a cadena de caracteres
+                                                expect(card2b.owner.toString()).to.equal(user._id.toString())
+
                                             })
                                     )
                             )
-    
+
                     )
             )
     )
-    
+
 
 
     after(() => mongoose.disconnect())

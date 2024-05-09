@@ -1,1 +1,1 @@
-curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N…U0MH0.90rTagfCpzknJ11mbVClwigJ8wpQHcBKbx_xgjEz4QU" http://localhost:8080/cards -v
+curl -X POST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N…AyOH0.RyHS-MNrRpXkp3CE5Bc84QSLzKvhw_qysO_fL65EFq0" -H "Content-Type: application/json" -d '{"bookId": "6638e83dd5dd05df9a0cab77"}' http://localhost:8080/cards -v

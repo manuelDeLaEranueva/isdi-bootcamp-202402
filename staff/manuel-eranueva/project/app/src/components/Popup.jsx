@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import logic from '../logic'
 
-function Popup({ book, onClose, onCreateCard }) {
+
+function Popup({ book, onClose }) {
     const handleCreateCardClick = () => {
-        onCreateCard(book);
+        console.log('popup executing')
+        logic.createCard(book._id);
+
     };
 
     return (

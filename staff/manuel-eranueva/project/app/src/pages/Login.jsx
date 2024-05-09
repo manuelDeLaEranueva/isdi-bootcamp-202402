@@ -1,7 +1,5 @@
 import { logger } from '../utils'
-
 import logic from '../logic'
-
 import { useContext } from '../context'
 
 function Login({ onUserLoggedIn, onRegisterClick }) {
@@ -21,7 +19,6 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
             logic.loginUser(username, password)
                 .then(() => {
                     form.reset()
-
                     onUserLoggedIn()
                 })
                 .catch(error => showFeedback(error, 'error'))
@@ -32,27 +29,32 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
     const handleRegisterClick = event => {
         event.preventDefault()
-
         onRegisterClick()
     }
 
-    // logger.debug('Login -> render')
+    return (
+        <main className="flex flex-col items-center justify-center h-screen bg-white">
+            <h1 className="text-3xl font-bold mb-8">Login</h1>
 
-    return <main>
-        <h1>Login</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
+                <label htmlFor="username" className="text-lg font-semibold">
+                    Username
+                </label>
+                <input id="username" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
 
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input id="username" />
+                <label htmlFor="password" className="text-lg font-semibold">
+                    Password
+                </label>
+                <input type="password" id="password" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
 
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
+                <button className="bg-blue-500 text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 focus:outline-none" type="submit">
+                    Login
+                </button>
+            </form>
 
-            <button className="round-button" type="submit">Login</button>
-        </form>
-
-        <a href="" onClick={handleRegisterClick}>Register</a>
-    </main>
+            <a href="#" onClick={handleRegisterClick} className="text-blue-500 mt-4 hover:underline">Register</a>
+        </main>
+    )
 }
 
 export default Login

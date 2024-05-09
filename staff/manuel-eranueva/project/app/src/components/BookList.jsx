@@ -45,7 +45,7 @@ function BookList({ onBookSelect }) {
             <ul>
                 {searchedBooks.map(book => (
                     <li key={book._id}>
-                        {/* Utiliza una función anónima para pasar el evento y el libro */}
+                        
                         <a href="#" onClick={(event) => handleSelectedBook(event, book)} className="text-black font-semibold">
                             {book.name}
                         </a>

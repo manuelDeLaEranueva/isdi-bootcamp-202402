@@ -39,31 +39,29 @@ function Register({ onUserRegistered, onLoginClick }) {
     logger.debug('Register -> render')
 
     return (
-        <div className="flex justify-center items-center h-screen bg-[#1B1F47]">
+        <div className="flex justify-center items-center h-screen bg-white">
             <main>
-
+                <h1 className="text-3xl font-bold mb-8">Register</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col items-center mt-10">
                     <div className="flex flex-col mb-4">
-                        <label htmlFor="name" className="text-white mb-1">Name</label>
-                        <input type="text" id="name" className="rounded-lg px-2 py-1" />
+                        <label htmlFor="name" className="text-gray-800 mb-1">Name</label>
+                        <input type="text" id="name" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
 
-                        <label htmlFor="email" className="text-white mb-1 mt-2">E-mail</label>
-                        <input type="email" id="email" className="rounded-lg px-2 py-1" />
+                        <label htmlFor="email" className="text-gray-800 mb-1 mt-2">E-mail</label>
+                        <input type="email" id="email" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
 
-                        <label htmlFor="username" className="text-white mb-1 mt-2">Username</label>
-                        <input id="username" className="rounded-lg px-2 py-1" />
+                        <label htmlFor="username" className="text-gray-800 mb-1 mt-2">Username</label>
+                        <input id="username" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
 
-                        <label htmlFor="password" className="text-white mb-1 mt-2">Password</label>
-                        <input type="password" id="password" className="rounded-lg px-2 py-1" />
+                        <label htmlFor="password" className="text-gray-800 mb-1 mt-2">Password</label>
+                        <input type="password" id="password" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
                     </div>
 
-                    <button className="bg-[#4C5D8B] hover:bg-[#6B99C3] text-white font-bold py-2 px-4 rounded mt-2" type="submit">Register</button>
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded mt-2 focus:outline-none" type="submit">Register</button>
                 </form>
-
-
             </main>
             <div class="fixed bottom-8 items-center">
-                <a href="" onClick={handleLoginClick} class="text-[#F7C815] mt-2 font-bold">Login</a>
+                <a href="" onClick={handleLoginClick} class="text-blue-500 mt-2 font-semibold">Login</a>
             </div>
         </div>
     )

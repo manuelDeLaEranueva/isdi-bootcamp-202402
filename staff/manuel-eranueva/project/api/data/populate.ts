@@ -3,7 +3,7 @@ import { User, Book, Card } from '.';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => User.deleteMany())
-    .then(() => User.create({ name: 'manuel', email: 'pepe@roni.com', username: 'manuel', password: '123qwe123' }))
+    .then(() => User.create({ name: 'manuel', email: 'manu@manu.com', username: 'manuel', password: '123qwe123' }))
     .then(() => Book.deleteMany())
     .then(() => Book.create([
         {

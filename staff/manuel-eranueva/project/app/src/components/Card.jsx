@@ -21,12 +21,12 @@ function Card({ item: card, onDeleted }) {
                 }
         })
 
-    logger.debug('Post > render')
+    logger.debug('Card > render')
 
     return <article>
 
-        {logic.getLoggedInUserId() === post.author.id && <>
-            <button onClick={() => handleDeleteClick(post.id)}>🗑️</button>
+        {logic.getLoggedInUserId() === card.owner.id && <>
+            <button onClick={() => handleDeleteClick(card.id)}>🗑️</button>
         </>}
     </article>
 }

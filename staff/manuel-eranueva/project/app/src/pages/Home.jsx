@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 
 import logic from '../logic'
 
-
 import BookList from '../components/BookList'
 import Popup from '../components/Popup'
 import CreateCard from '../components/CreateCard'
 import CardList from '../components/CardList'
+
+import { useContext } from '../context'
 
 function Home({ onUserLoggedOut }) {
     const [user, setUser] = useState(null)
@@ -16,15 +17,27 @@ function Home({ onUserLoggedOut }) {
     const [popupOpen, setPopupOpen] = useState(false)
     const [card, setCard] = useState(null)
 
+    const { showFeedback } = useContext()
+
+
     useEffect(() => {
-        logic.retrieveUser()
-            .then(user => setUser(user))
-            .catch(error => console.error('Failed to retrieve user:', error))
+        try {
+            logic.retrieveUser()
+                .then(setUser)
+                .catch(error => showFeedback(error, 'error'))
+        } catch (error) {
+            showFeedback(error)
+        }
+    }, [])
 
-
-        logic.retrieveBooks()
-            .then(books => setBooks(books))
-            .catch(error => console.error('Failed to retrieve books:', error))
+    useEffect(() => {
+        try {
+            logic.retrieveBooks()
+                .then(setBooks)
+                .catch(error => showFeedback(error, 'error'))
+        } catch (error) {
+            showFeedback(error)
+        }
     }, [])
 
     const clearView = () => setView(null)
@@ -34,7 +47,7 @@ function Home({ onUserLoggedOut }) {
         clearView()
     }
 
-    const handleCreateCardClick = () => setView('create-card')
+
 
     const handleLogoutClick = () => {
         try {
@@ -55,7 +68,9 @@ function Home({ onUserLoggedOut }) {
         setSelectedBook(null)
         setPopupOpen(false)
     }
-    const handleCreateCard = (book) => {
+
+    // const handleCreateCardClick = () => setView('create-card')
+    const handleCreateCardClick = (book) => {
 
         logic.createCard(book._id, user._id)
             .then(() => {
@@ -79,7 +94,7 @@ function Home({ onUserLoggedOut }) {
             <main>
                 {view === 'create-card' && <CreateCard onCancelClick={handleCreateCardCancelClick} onCardCreated={handleCardCreated} />}
                 <BookList onBookSelect={handleSelectedBook} books={books} />
-                {popupOpen && selectedBook && <Popup book={selectedBook} onClose={handleClosePopup} onCreateCard={handleCreateCard} />}
+                {popupOpen && selectedBook && <Popup book={selectedBook} onClose={handleClosePopup} onCreateCard={handleCreateCardClick} />}
             </main>
 
             <footer className="fixed bottom-0 w-full h-[50px] flex justify-center items-center p-[10px] box-border bg-white">

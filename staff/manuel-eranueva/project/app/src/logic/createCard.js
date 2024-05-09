@@ -1,9 +1,9 @@
 import { errors } from 'com'
 
-
-function createCard() {
-
-    const card = {}
+function createCard(bookId) {
+    console.log('createCard front function')
+    //validate.token(sessionStorage.token)
+    const card = { "bookId": bookId }
 
     const json = JSON.stringify(card)
 
