@@ -16,9 +16,9 @@ function BookList({ onBookSelect }) {
     }, []);
 
     const handleSelectedBook = (event, book) => {
-        event.preventDefault()
-        onBookSelect(book)
-    }
+        event.preventDefault();
+        onBookSelect(book);
+    };
 
     const handleSearch = event => {
         const letter = event.target.value;
@@ -44,11 +44,10 @@ function BookList({ onBookSelect }) {
             />
             <ul>
                 {searchedBooks.map(book => (
-                    <li key={book._id}>
-                        
-                        <a href="#" onClick={(event) => handleSelectedBook(event, book)} className="text-black font-semibold">
+                    <li key={book._id} className="py-2">
+                        <button onClick={(event) => handleSelectedBook(event, book)} className="text-black font-semibold hover:underline">
                             {book.name}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>

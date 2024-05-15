@@ -1,6 +1,5 @@
 import { validate, errors } from 'com'
 
-
 function retrieveCards() {
     validate.token(sessionStorage.token)
 
@@ -10,18 +9,15 @@ function retrieveCards() {
         }
     })
         .then(res => {
-            if (res.status === 200)
-                return res.json()
-
+            if (!res.ok) {
+                throw new Error('Failed to retrieve cards')
+            }
             return res.json()
-                .then(body => {
-                    const { error, message } = body
-
-                    const constructor = errors[error]
-
-                    throw new constructor(message)
-                })
         })
+        .catch(error => {
+            console.error('Error retrieving cards:', error)
+            throw new Error('Failed to retrieve cards')
+        });
 }
 
 export default retrieveCards

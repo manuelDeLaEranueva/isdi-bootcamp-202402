@@ -1,24 +1,14 @@
-import { ObjectId } from 'mongoose'
+import { Card, CardType } from '../data/index.ts'
+import { errors } from 'com'
 
-import { validate, errors } from 'com'
+const { SystemError } = errors
 
-import { User, CardType, Card } from '../data/index.ts'
-
-const { SystemError, NotFoundError } = errors
-
-function retrieveCards(userId: string): Promise<CardType[]> {
-    validate.text(userId, 'userId', true);
-
-    return User.findById(userId)
+function retrieveCards(): Promise<CardType[]> {
+    return Card.find()
+        .populate('book')
+        .populate('owner')
+        .exec()
         .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if (!user)
-                throw new NotFoundError('user not found');
-
-            return Card.find({ owner: userId })
-                .populate('book', 'image name author')
-                .lean()
-                .then(cards => cards.reverse())
-        })
 }
+
 export default retrieveCards

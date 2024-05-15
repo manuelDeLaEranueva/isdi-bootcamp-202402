@@ -19,7 +19,6 @@ Although theres a huge number of public libraries in Barcelona, they usually don
 - create your own cards, to share with the community the comics you want to read
 - connect with other users using the cards
 - update both libraries (books i have and books i want to read)
-- open a chat with other user when both of you are interesteed in exchanging
 
 v0.1
 
@@ -31,6 +30,7 @@ v0.1
 - share wich books you have to retrieve and when
 - rate users
 - see in a map the relative position of the user with wich you are speaking
+- open a chat with other user when both of you are interesteed in exchanging
 
 ### UI Design
 
@@ -62,14 +62,11 @@ User
 - username (string, required)
 - email (string, required)
 - password (string, required)
-- profile picture (optional)
-- localization
 
 Book
 - id (Book.id, required)
 - image (string, required)
 - author (string, required)
-- lenguaje (string, required)
 - title (string, required)
 
 All Books (main database)
@@ -84,19 +81,9 @@ Wanna read
 - user id (required)
 - books (objects extracted from 'All Books')
 
-Rainbow card 
+Card 
 - user id (required)
 - both books (objects extracted from 'All Books')
 - proximity
 - user
 - date of creation
-
-Chat
-- user ids (required)
-- both users (string, required)
-- messages (string, required)
-
-Review
-- id (required)
-- user(User.id, required)
-- rate (number, required, enum: 1|2|3|4|5)

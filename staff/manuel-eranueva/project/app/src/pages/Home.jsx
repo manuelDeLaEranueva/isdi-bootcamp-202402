@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-
 import logic from '../logic'
-
 import BookList from '../components/BookList'
 import Popup from '../components/Popup'
 import CreateCard from '../components/CreateCard'
 import CardList from '../components/CardList'
-
+import { Link } from 'react-router-dom'
+import retrieveCards from '../logic/retrieveCards'
 import { useContext } from '../context'
 
 function Home({ onUserLoggedOut }) {
@@ -15,10 +14,10 @@ function Home({ onUserLoggedOut }) {
     const [books, setBooks] = useState([])
     const [selectedBook, setSelectedBook] = useState(null);
     const [popupOpen, setPopupOpen] = useState(false)
-    const [card, setCard] = useState(null)
+
+    const [cards, setCards] = useState([]) // Nuevo estado para almacenar las cards
 
     const { showFeedback } = useContext()
-
 
     useEffect(() => {
         try {
@@ -40,14 +39,18 @@ function Home({ onUserLoggedOut }) {
         }
     }, [])
 
+    useEffect(() => {
+        retrieveCards() // Llama a la función retrieveCards
+            .then(cards => setCards(cards))
+            .catch(error => console.error('Error retrieving cards:', error))
+    }, []) // Ejecuta una vez al montar el componente
+
     const clearView = () => setView(null)
     const handleCreateCardCancelClick = () => clearView()
 
     const handleCardCreated = () => {
         clearView()
     }
-
-
 
     const handleLogoutClick = () => {
         try {
@@ -69,36 +72,38 @@ function Home({ onUserLoggedOut }) {
         setPopupOpen(false)
     }
 
-    // const handleCreateCardClick = () => setView('create-card')
     const handleCreateCardClick = (book) => {
-
         logic.createCard(book._id, user._id)
             .then(() => {
                 console.log('Card created successfully')
-
             })
             .catch(error => {
                 console.error('Failed to create card:', error)
-
             })
     }
 
     return (
         <>
-            <header>
-                {user && <h1>{user.name}'s Bookshelf</h1>}
+            <header className="py-4 px-8 bg-gray-800 text-white flex justify-between items-center">
+                {user && <h1 className="text-3xl font-bold">{user.name}'s Bookshelf</h1>}
                 <nav>
-                    <button onClick={handleLogoutClick}>🚪 Logout</button>
+                    <button onClick={handleLogoutClick} className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
+                        🚪 Logout
+                    </button>
+                    <Link to="/profile">Go to Profile</Link>
                 </nav>
             </header>
-            <main>
+            <main className="p-8">
                 {view === 'create-card' && <CreateCard onCancelClick={handleCreateCardCancelClick} onCardCreated={handleCardCreated} />}
                 <BookList onBookSelect={handleSelectedBook} books={books} />
                 {popupOpen && selectedBook && <Popup book={selectedBook} onClose={handleClosePopup} onCreateCard={handleCreateCardClick} />}
+                <CardList cards={cards} /> {/* Renderiza la lista de cards */}
             </main>
 
-            <footer className="fixed bottom-0 w-full h-[50px] flex justify-center items-center p-[10px] box-border bg-white">
-                <button onClick={handleCreateCardClick}>➕</button>
+            <footer className="fixed bottom-0 w-full bg-white shadow-md p-4">
+                <button onClick={() => setView('create-card')} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                    ➕ Add Card
+                </button>
             </footer>
         </>
     )

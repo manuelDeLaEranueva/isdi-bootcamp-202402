@@ -7,7 +7,7 @@ const URL_REGEX = /^(http|https):\/\//;
 const validate = {
     text(text, explain, checkEmptySpaceInside) {
         if (typeof text !== 'string')
-            throw new TypeError(explain + ' ' + text + ' buenas tardes');
+            throw new TypeError(explain + ' ' + text + ' is not a string');
         if (!text.trim().length)
             throw new ContentError(explain + ' >' + text + '< is empty or blank');
         if (checkEmptySpaceInside)
@@ -16,7 +16,7 @@ const validate = {
     },
     date(date, explain) {
         if (typeof date !== 'string')
-            throw new TypeError(explain + ' ' + date + ' buenas tardes');
+            throw new TypeError(explain + ' ' + date + ' is not a string');
         if (!DATE_REGEX.test(date))
             throw new ContentError(explain + ' ' + date + ' does not have a valid format');
     },
@@ -38,7 +38,7 @@ const validate = {
     },
     token(token, explain = 'token') {
         if (typeof token !== 'string')
-            throw new TypeError(`${explain} buenas tardes`);
+            throw new TypeError(`${explain} is not a string`);
         const { exp } = util.extractJwtPayload(token);
         if (exp * 1000 < Date.now())
             throw new UnauthorizedError('session expired');

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import mongoose, { ObjectId } from 'mongoose'
 
 const { Schema, model } = mongoose

@@ -24,11 +24,18 @@ function Card({ item: card, onDeleted }) {
     logger.debug('Card > render')
 
     return <article>
+        <h3>{card.owner.username}</h3>
 
-        {logic.getLoggedInUserId() === card.owner.id && <>
-            <button onClick={() => handleDeleteClick(card.id)}>🗑️</button>
-        </>}
-    </article>
+        <img src={card.image} />
+
+        <p>{card.book.author}</p>
+
+        {
+            logic.getLoggedInUserId() === card.owner.id && <>
+                <button onClick={() => handleDeleteClick(card.id)}>🗑️</button>
+            </>
+        }
+    </article >
 }
 
 export default Card
