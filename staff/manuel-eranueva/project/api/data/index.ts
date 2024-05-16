@@ -26,12 +26,31 @@ const book = new Schema({
     }
 })
 
+
 type CardType = {
     book: ObjectId
     owner: ObjectId
 }
 
 const card = new Schema({
+    book: {
+        type: ObjectId,
+        ref: 'Book',
+        required: true
+    },
+    owner: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    }
+})
+
+type MyBookselfType = {
+    book: ObjectId
+    owner: ObjectId
+}
+
+const myBookself = new Schema({
     book: {
         type: ObjectId,
         ref: 'Book',
@@ -79,6 +98,7 @@ const user = new Schema({
 const User = model<UserType>('User', user)
 const Book = model<BookType>('Book', book)
 const Card = model<CardType>('Card', card)
+const MyBookself = model<MyBookselfType>('MyBookself', myBookself)
 
 export {
     UserType,
@@ -86,5 +106,7 @@ export {
     BookType,
     Book,
     CardType,
-    Card
+    Card,
+    MyBookself,
+    MyBookselfType
 }

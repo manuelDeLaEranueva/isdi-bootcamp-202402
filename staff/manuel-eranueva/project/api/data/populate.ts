@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { User, Book, Card } from '.';
+import { User, Book, Card, MyBookself } from '.';
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => User.deleteMany())
@@ -43,6 +43,24 @@ mongoose.connect('mongodb://localhost:27017/project')
                         if (!user) throw new Error('User not found');
 
                         return Card.create({
+                            book: book._id,
+                            owner: user._id
+                        });
+                    });
+            });
+    })
+    .then(() => MyBookself.deleteMany())
+    .then(() => {
+
+        return Book.findOne({ name: 'One Piece' })
+            .then((book) => {
+                if (!book) throw new Error('Book not found');
+
+                return User.findOne({ name: 'manuel' })
+                    .then((user) => {
+                        if (!user) throw new Error('User not found');
+
+                        return MyBookself.create({
                             book: book._id,
                             owner: user._id
                         });

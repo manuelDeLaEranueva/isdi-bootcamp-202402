@@ -1,14 +1,10 @@
 import { logger } from '../utils'
-
 import { Link } from 'react-router-dom'
-
 import logic from '../logic'
-
 import { useContext } from '../context'
 
 function Card({ item: card, onDeleted }) {
     const { showFeedback, showConfirm } = useContext()
-
     const handleDeleteClick = cardId =>
         showConfirm('delete card?', confirmed => {
             if (confirmed)
@@ -23,19 +19,24 @@ function Card({ item: card, onDeleted }) {
 
     logger.debug('Card > render')
 
-    return <article>
-        <h3>{card.owner.username}</h3>
 
-        <img src={card.image} />
+    if (!card) {
+        console.log('no cards')
+        return null;
+    }
 
-        <p>{card.book.author}</p>
-
-        {
-            logic.getLoggedInUserId() === card.owner.id && <>
-                <button onClick={() => handleDeleteClick(card.id)}>🗑️</button>
-            </>
-        }
-    </article >
+    return (
+        <article>
+            <h3>{card.owner && card.owner.username}</h3>
+            <img src={card.image} />
+            <p>{card.book && card.book.author}</p>
+            {
+                logic.getLoggedInUserId() === card.owner.id && (
+                    <button onClick={() => handleDeleteClick(card.id)}>🗑️</button>
+                )
+            }
+        </article>
+    );
 }
 
 export default Card

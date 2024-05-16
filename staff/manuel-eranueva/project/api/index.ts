@@ -236,7 +236,46 @@ mongoose.connect(MONGODB_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveCards(userId as string)
+                logic.retrieveCards()
+                    .then(cards => res.json(cards))
+                    .catch(error => {
+                        if (error instanceof SystemError) {
+                            logger.error(error.message)
+
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        } else if (error instanceof NotFoundError) {
+                            logger.warn(error.message)
+
+                            res.status(404).json({ error: error.constructor.name, message: error.message })
+                        }
+                    })
+            } catch (error) {
+                if (error instanceof TypeError || error instanceof ContentError) {
+                    logger.warn(error.message)
+
+                    res.status(406).json({ error: error.constructor.name, message: error.message })
+                } else if (error instanceof TokenExpiredError) {
+                    logger.warn(error.message)
+
+                    res.status(498).json({ error: UnauthorizedError.name, message: 'session expired' })
+                } else {
+                    logger.warn(error.message)
+
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                }
+            }
+        })
+
+        api.get('/mybookselves', (req, res) => {
+            try {
+                const { authorization } = req.headers
+
+                const token = authorization.slice(7)
+
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                console.log(userId)
+                logic.retrieveUserBooks(userId as string)
+
                     .then(cards => res.json(cards))
                     .catch(error => {
                         if (error instanceof SystemError) {

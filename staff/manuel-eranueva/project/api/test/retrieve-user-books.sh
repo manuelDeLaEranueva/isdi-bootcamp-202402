@@ -1,0 +1,1 @@
+curl -X GET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N…k4N30.8rYrVlo8nyr2A-NWVUNrFTCAm5taY5obdggU5bq4xdM" -H "Content-Type: application/json" http://localhost:8080/mybookselves -v

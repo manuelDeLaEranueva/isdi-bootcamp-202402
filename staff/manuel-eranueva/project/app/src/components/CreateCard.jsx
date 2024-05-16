@@ -1,44 +1,37 @@
-import { logger } from '../utils'
-import CancelButton from './library/CancelButton'
-import React from 'react'
-import RoundButton from './library/RoundButton'
-import logic from '../logic'
-import { useContext } from '../context'
-import Card from './Card'
+import React, { useState } from 'react';
+import logic from '../logic';
 
+function CreateCard({ onCancelClick, onCardCreated }) {
+    const [bookId, setBookId] = useState('');
 
-function CreateCard(props) {
-    const { showFeedback } = useContext();
-
-    const handleSubmit = event => {
-        event.preventDefault()
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
         try {
-            logic.createCard()
-                .then(() => {
-                    form.reset()
-
-                    props.onCardCreated()
-                })
-                .catch(error => showFeedback(error, 'error'));
+            await logic.createCard(bookId);
+            onCardCreated(); // Llama a la función de actualización de tarjetas después de crear una nueva tarjeta
         } catch (error) {
-            showFeedback(error);
+            console.error('Error creating card:', error);
         }
-    }
-
-    const handleCancelClick = () => props.onCancelClick()
-
-    logger.debug('CreateCard -> render')
+    };
 
     return (
-        <section className="mb-[50px] fixed bottom-0 left-0 bg-white w-full box-border p-[5vw]">
-            <form onSubmit={handleSubmit} className="flex flex-col ">
-                <RoundButton type="submit">Create</RoundButton>
+        <div>
+            <h2>Create Card</h2>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Book ID:
+                    <input
+                        type="text"
+                        value={bookId}
+                        onChange={(event) => setBookId(event.target.value)}
+                    />
+                </label>
+                <button type="submit">Create</button>
+                <button onClick={onCancelClick}>Cancel</button>
             </form>
-
-            <CancelButton onClick={handleCancelClick} />
-        </section>
-    )
+        </div>
+    );
 }
 
-export default CreateCard
+export default CreateCard;
