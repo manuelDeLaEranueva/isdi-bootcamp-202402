@@ -1,16 +1,11 @@
 import { logger } from '../utils'
-
 import logic from '../logic'
-
 import { useState, useEffect } from 'react'
-import Card from './Card'
-
 import { useContext } from '../context'
 import UserBook from './UserBook'
 
 function UserBookList({ stamp }) {
     const [bookselves, setBookselves] = useState([])
-
     const { showFeedback } = useContext()
 
     const loadBookSelves = () => {
@@ -33,9 +28,17 @@ function UserBookList({ stamp }) {
 
     logger.debug('UserBookList -> render')
 
-    return <section>
-        {bookselves.map(card => <UserBook key={card.id} item={card} onDeleted={handleCardDeleted} />)}
-    </section>
+    return (
+        <section className="bg-white p-4 rounded shadow-md mt-4">
+            {bookselves.length > 0 ? (
+                bookselves.map(card => (
+                    <UserBook key={card.id} item={card} onDeleted={handleCardDeleted} />
+                ))
+            ) : (
+                <p className="text-gray-500">No books available</p>
+            )}
+        </section>
+    )
 }
 
 export default UserBookList

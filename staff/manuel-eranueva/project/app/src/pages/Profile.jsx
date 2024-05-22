@@ -1,54 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import logic from '../logic';
-import { useContext } from '../context.js';
-import Card from '../components/Card';
-import CardList from '../components/CardList.jsx';
-import retrieveUserCards from '../logic/retrieveUserCards.js';
-import retrieveUserBooks from '../logic/retrieveUserBooks.js';
-import UserBookList from '../components/UserBookList.jsx';
-import UserBook from '../components/UserBook'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import logic from '../logic'
+import { useContext } from '../context.js'
+import retrieveUserBooks from '../logic/retrieveUserBooks.js'
+import UserBookList from '../components/UserBookList.jsx'
 
 function Profile() {
-    const { showFeedback } = useContext();
-    const [user, setUser] = useState(null);
+    const { showFeedback } = useContext()
+    const [user, setUser] = useState(null)
     const [bookselves, setBookselves] = useState([])
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const userData = await logic.retrieveUser();
-                setUser(userData);
+                const userData = await logic.retrieveUser()
+                setUser(userData)
 
-                const bookselves = await retrieveUserBooks();
-                setBookselves(bookselves);
+                const bookselves = await retrieveUserBooks()
+                setBookselves(bookselves)
             } catch (error) {
-                alert(error);
+                alert(error)
             }
         }
-        fetchData();
-    }, []);
+        fetchData()
+    }, [])
 
     return (
-        <section className="h-full bg-[#6E8BB3] flex flex-col justify-start mt-4 mx-4">
-            <div className="sticky top-[80px] z-20 flex justify-between items-start bg-[#6E8BB3] p-4">
-                <Link to="/">
-                    <img src="../../public/home.png" alt="home" className="w-8 h-8" />
-                </Link>
+        <section className="bg-[#6E8BB3] flex flex-col mx-4">
 
-                <div className="mt-2 flex flex-col items-center">
-
-                    {user && (
-                        <h1 className="text-white font-bold text-xl mt-2">
-                            Hola, {user.username}
-                        </h1>
-                    )}
-                </div>
+            <Link to="/" className="flex items-center h-full px-4">
+                <img src="../../public/home.png" alt="home" className="w-8 h-8" />
+            </Link>
+            <div className="flex flex-col items-center justify-center h-full px-4">
+                {user && (
+                    <h1 className="text-white font-bold text-xl">
+                        Hola, {user.username}
+                    </h1>
+                )}
             </div>
 
-
-            <section>
-                <UserBookList />
+            <section className="mt-4">
+                <UserBookList books={bookselves} />
             </section>
         </section>
     );

@@ -29,7 +29,7 @@ function Card({ item: card, onDeleted }) {
         <article>
             <h3>{card.owner && card.owner.username}</h3>
             <img src={card.image} />
-            <p>{card.book && card.book.author}</p>
+            <p>{card.book && card.book.author && card.book.name}</p>
             {
                 logic.getLoggedInUserId() === card.owner.id && (
                     <button onClick={() => handleDeleteClick(card.id)}>🗑️</button>
