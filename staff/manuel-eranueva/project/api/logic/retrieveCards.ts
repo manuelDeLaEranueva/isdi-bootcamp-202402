@@ -8,6 +8,7 @@ function retrieveCards(): Promise<CardType[]> {
         .populate('book')
         .populate('owner')
         .exec()
+        .then(cards => cards.reverse())
         .catch(error => { throw new SystemError(error.message) })
 }
 

@@ -4,7 +4,7 @@ import logic from '../logic'
 import { useContext } from '../context'
 
 function Card({ item: card, onDeleted }) {
-    const { showFeedback, showConfirm } = useContext();
+    const { showFeedback, showConfirm } = useContext()
 
     const handleDeleteClick = (cardId) =>
         showConfirm('delete card?', (confirmed) => {
@@ -12,31 +12,31 @@ function Card({ item: card, onDeleted }) {
                 try {
                     logic.deleteCard(cardId)
                         .then(() => onDeleted())
-                        .catch((error) => showFeedback(error, 'error'));
+                        .catch((error) => showFeedback(error, 'error'))
                 } catch (error) {
-                    showFeedback(error);
+                    showFeedback(error)
                 }
-        });
+        })
 
-    logger.debug('Card > render');
+    logger.debug('Card > render')
 
     if (!card) {
-        console.log('no cards');
-        return null;
+        console.log('no cards')
+        return null
     }
 
-    const { owner, book } = card;
+    const { owner, book } = card
 
     if (!owner || !book) {
-        console.log('Card data missing owner or book details');
-        return null;
+        console.log('Card data missing owner or book details')
+        return null
     }
 
     return (
         <article className="card p-4 border rounded shadow-md">
             <h3 className="font-bold">{owner.username}</h3>
-            {book.image && <img src={book.image} className="w-full h-auto" />}
-            <p className="text-lg">{book.name}</p>
+            {book.image && <img src={book.image} alt={`Cover of ${book.name}`} className="w-full h-auto" />}
+            <p className="text-lg font-semibold">{book.name}</p>
             <p className="text-gray-600">{book.author}</p>
             {logic.getLoggedInUserId() === owner.id && (
                 <button
@@ -47,7 +47,7 @@ function Card({ item: card, onDeleted }) {
                 </button>
             )}
         </article>
-    );
+    )
 }
 
-export default Card;
+export default Card
