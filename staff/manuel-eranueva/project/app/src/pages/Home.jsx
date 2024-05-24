@@ -57,7 +57,7 @@ function Home({ onUserLoggedOut }) {
 
     const handleSelectedBook = (book) => {
         setSelectedBook(book)
-        setSearchVisible(false) // Modificación: Ocultar el buscador al seleccionar un libro
+        setSearchVisible(false)
         setPopupOpen(true)
     }
 
@@ -67,12 +67,16 @@ function Home({ onUserLoggedOut }) {
     }
 
     const handleCardCreated = () => {
-        setPopupOpen(false) // Modificación: Cerrar el popup después de crear una tarjeta
+        setPopupOpen(false)
         retrieveCards()
             .then(cards => {
                 setCards(cards)
             })
             .catch(error => console.error('Error retrieving cards:', error))
+    }
+
+    const handleCardDelete = (deletedCardId) => {
+        setCards(cards.filter(card => card._id !== deletedCardId))
     }
 
     return (
@@ -88,9 +92,9 @@ function Home({ onUserLoggedOut }) {
             </header>
             <main className="p-8">
                 {popupOpen && selectedBook && (
-                    <Popup book={selectedBook} onClose={handleClosePopup} />
+                    <Popup book={selectedBook} onClose={handleClosePopup} onCardCreated={handleCardCreated} />
                 )}
-                <CardList cards={cards} onDeleted={(deletedCardId) => setCards(cards.filter(card => card._id !== deletedCardId))} />
+                <CardList cards={cards} onDeleted={handleCardDelete} />
             </main>
             <footer className="fixed bottom-0 w-full bg-white shadow-md p-4">
                 <button onClick={() => setSearchVisible(true)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">

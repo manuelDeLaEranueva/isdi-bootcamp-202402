@@ -1,19 +1,15 @@
 import { logger } from '../utils'
-
 import logic from '../logic'
-
 import { useState, useEffect } from 'react'
 import Card from './Card'
-
 import { useContext } from '../context'
 
-function CardList({ stamp }) {
-    const [cards, setCards] = useState([])
-
+function CardList({ cards: initialCards, onDeleted }) {
+    const [cards, setCards] = useState(initialCards)
     const { showFeedback } = useContext()
 
-    const loadCards = () => {
-        logger.debug('PostList -> loadCards')
+    useEffect(() => {
+        logger.debug('CardList -> loadCards')
 
         try {
             logic.retrieveCards()
@@ -22,19 +18,32 @@ function CardList({ stamp }) {
         } catch (error) {
             showFeedback(error)
         }
+    }, [])
+
+    const handleCardDelete = (deletedCardId) => {
+        logic.removeCard(deletedCardId)
+            .then(() => {
+                const updatedCards = cards.filter(card => card.id !== deletedCardId)
+                setCards(updatedCards)
+                onDeleted(deletedCardId)
+            })
+            .catch(error => showFeedback(error, 'error'))
     }
-
-    useEffect(() => {
-        loadCards()
-    }, [stamp])
-
-    const handleCardDeleted = () => loadCards()
 
     logger.debug('CardList -> render')
 
-    return <section>
-        {cards.map(card => <Card key={card.id} item={card} onDeleted={handleCardDeleted} />)}
-    </section>
+    return (
+        <section>
+            {cards.map(card => (
+                <Card
+                    key={card.id}
+                    item={card}
+                    onDeleted={() => handleCardDelete(card.id)}
+
+                />
+            ))}
+        </section>
+    )
 }
 
 export default CardList

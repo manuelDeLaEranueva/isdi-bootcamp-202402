@@ -6,7 +6,7 @@ import getLoggedInUserId from './getLoggedInUserId'
 import isUserLoggedIn from './isUserLoggedIn'
 import cleanUpLoggedInUserId from './cleanUpLoggedInUserId'
 import retrieveBooks from './retrieveBooks'
-import deleteCard from './deleteCard'
+import removeCard from './removeCard'
 import createCard from './createCard'
 import retrieveCards from './retrieveCards'
 import retrieveUserCards from './retrieveUserCards'
@@ -24,7 +24,7 @@ const logic = {
     isUserLoggedIn,
     cleanUpLoggedInUserId,
     retrieveBooks,
-    deleteCard,
+    removeCard,
     createCard,
     retrieveCards,
     retrieveUserCards,
