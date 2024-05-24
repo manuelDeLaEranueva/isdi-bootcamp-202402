@@ -23,7 +23,7 @@ function CardList({ cards: initialCards, onDeleted }) {
     const handleCardDelete = (deletedCardId) => {
         logic.removeCard(deletedCardId)
             .then(() => {
-                const updatedCards = cards.filter(card => card.id !== deletedCardId)
+                const updatedCards = cards.filter(card => card._id !== deletedCardId)
                 setCards(updatedCards)
                 onDeleted(deletedCardId)
             })
@@ -36,10 +36,9 @@ function CardList({ cards: initialCards, onDeleted }) {
         <section>
             {cards.map(card => (
                 <Card
-                    key={card.id}
+                    key={card._id}
                     item={card}
-                    onDeleted={() => handleCardDelete(card.id)}
-
+                    onDeleted={() => handleCardDelete(card._id)}
                 />
             ))}
         </section>

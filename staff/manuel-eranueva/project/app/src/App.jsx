@@ -9,7 +9,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Feedback from './components/Feedback'
 import { useState } from 'react'
 import { Context } from './context'
-//import Confirm from './components/Confirm'
+import Confirm from './components/Confirm'
 import { errors } from 'com'
 
 const { UnauthorizedError } = errors

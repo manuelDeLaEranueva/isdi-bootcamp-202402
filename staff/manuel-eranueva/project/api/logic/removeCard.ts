@@ -1,10 +1,9 @@
-//@ts-nocheck
 import { validate, errors } from 'com'
 import { Card, User } from '../data/index.ts'
 
 const { SystemError, NotFoundError } = errors
 
-function removeCard(userId: string, cardId: string): Promise<void> {
+function removeCard(userId, cardId) {
     validate.text(userId, 'userId', true)
     validate.text(cardId, 'cardId', true)
 
