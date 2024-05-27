@@ -324,7 +324,7 @@ mongoose.connect(MONGODB_URL)
                             res.status(500).json({ error: error.constructor.name, message: error.message });
                         } else if (error instanceof NotFoundError) {
                             logger.warn(error.message);
-                            res.status(404).json({ error: error.constructor.name, message: error.message });
+
                         }
                     });
             } catch (error) {
