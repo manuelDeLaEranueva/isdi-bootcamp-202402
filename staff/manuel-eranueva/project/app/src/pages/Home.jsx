@@ -38,7 +38,7 @@ function Home({ onUserLoggedOut }) {
     }, [])
 
     useEffect(() => {
-        retrieveCards()
+        logic.retrieveCards()
             .then(cards => {
                 setCards(cards)
             })
@@ -68,7 +68,7 @@ function Home({ onUserLoggedOut }) {
 
     const handleCardCreated = () => {
         setPopupOpen(false)
-        retrieveCards()
+        logic.retrieveCards()
             .then(cards => {
                 setCards(cards)
             })
@@ -92,7 +92,7 @@ function Home({ onUserLoggedOut }) {
             </header>
             <main className="p-8">
                 {popupOpen && selectedBook && (
-                    <Popup book={selectedBook} onClose={handleClosePopup} onCardCreated={handleCardCreated} />
+                    <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleCardCreated} context="addCard" />
                 )}
                 <CardList cards={cards} onDeleted={handleCardDelete} />
             </main>

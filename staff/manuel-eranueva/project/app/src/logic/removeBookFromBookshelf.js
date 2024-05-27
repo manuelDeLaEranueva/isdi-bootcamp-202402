@@ -1,20 +1,18 @@
 import { validate, errors } from 'com'
 
-function addToBookshelf(bookId) {
+function removeBookFromBookshelf(bookId) {
     validate.text(bookId, 'bookId', true)
     validate.token(sessionStorage.token)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/mybookselves`, {
-        method: 'POST',
+    return fetch(`${import.meta.env.VITE_API_URL}/mybookselves/${bookId}`, {
+        method: 'DELETE',
         headers: {
             Authorization: `Bearer ${sessionStorage.token}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ bookId })
+        }
     })
         .then(res => {
-            if (res.status === 201)
-                return res.json()
+            if (res.status === 204) // 204 for no content
+                return
             return res.json()
                 .then(body => {
                     const { error, message } = body
@@ -24,4 +22,4 @@ function addToBookshelf(bookId) {
         })
 }
 
-export default addToBookshelf
+export default removeBookFromBookshelf

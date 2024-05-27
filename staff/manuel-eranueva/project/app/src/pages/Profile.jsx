@@ -13,6 +13,7 @@ function Profile() {
     const [selectedBook, setSelectedBook] = useState(null)
     const [popupOpen, setPopupOpen] = useState(false)
     const [searchVisible, setSearchVisible] = useState(false)
+    const [editMode, setEditMode] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
@@ -47,11 +48,19 @@ function Profile() {
             .catch(error => console.error('Error retrieving bookshelves:', error))
     }
 
+    const handleDeleteBook = (bookId) => {
+        logic.removeBookFromBookshelf(bookId)
+            .then(() => {
+                setBookselves(prevBookselves => prevBookselves.filter(book => book.book._id !== bookId))
+            })
+            .catch(error => console.error('Error deleting book from bookshelf:', error))
+    }
+
     return (
         <section className="h-full bg-[#6E8BB3] flex flex-col justify-start mt-4 mx-4">
             <div className="sticky top-[80px] z-20 flex justify-between items-start bg-[#6E8BB3] p-4">
                 <Link to="/">
-                    <img src="../../home.png" alt="home" className="w-8 h-8" />
+                    <img src="../../public/home.png" alt="home" className="w-8 h-8" />
                 </Link>
 
                 <div className="mt-2 flex flex-col items-center">
@@ -64,12 +73,15 @@ function Profile() {
             </div>
 
             <section>
-                <UserBookList />
+                <UserBookList bookselves={bookselves} editMode={editMode} onDeleteBook={handleDeleteBook} />
             </section>
 
-            <footer className="fixed bottom-0 w-full bg-white shadow-md p-4">
+            <footer className="fixed bottom-0 w-full bg-white shadow-md p-4 flex justify-between">
                 <button onClick={() => setSearchVisible(true)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
                     ➕ Add to Bookshelf
+                </button>
+                <button onClick={() => setEditMode(!editMode)} className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
+                    {editMode ? 'Done' : 'Edit Bookshelf'}
                 </button>
             </footer>
             {searchVisible && (
@@ -84,7 +96,7 @@ function Profile() {
                 </div>
             )}
             {popupOpen && selectedBook && (
-                <Popup book={selectedBook} onClose={handleClosePopup} onBookAdded={handleBookAdded} />
+                <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleBookAdded} context="addToBookshelf" />
             )}
         </section>
     )

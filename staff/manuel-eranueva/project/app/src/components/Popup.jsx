@@ -1,16 +1,27 @@
 import React from 'react'
 import logic from '../logic'
 
-function Popup({ book, onClose, onBookAdded }) {
-    const handleAddToBookshelfClick = () => {
-        logic.addToBookshelf(book._id)
-            .then(() => {
-                onBookAdded()
-                onClose()
-            })
-            .catch(error => {
-                console.error('Error adding book to bookshelf:', error) // Asegúrate de manejar y registrar el error
-            })
+function Popup({ book, onClose, onActionCompleted, context }) {
+    const handleActionClick = () => {
+        if (context === 'addCard') {
+            logic.createCard(book._id)
+                .then(() => {
+                    onActionCompleted()
+                    onClose()
+                })
+                .catch(error => {
+                    console.error('Error creating card:', error)
+                })
+        } else if (context === 'addToBookshelf') {
+            logic.addToBookshelf(book._id)
+                .then(() => {
+                    onActionCompleted()
+                    onClose()
+                })
+                .catch(error => {
+                    console.error('Error adding book to bookshelf:', error)
+                })
+        }
     }
 
     const handleCancelClick = () => {
@@ -27,8 +38,8 @@ function Popup({ book, onClose, onBookAdded }) {
                     <button onClick={handleCancelClick} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
                         Cancel
                     </button>
-                    <button onClick={handleAddToBookshelfClick} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                        Add to Bookshelf
+                    <button onClick={handleActionClick} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                        {context === 'addCard' ? 'Create Card' : 'Add to Bookshelf'}
                     </button>
                 </div>
             </div>

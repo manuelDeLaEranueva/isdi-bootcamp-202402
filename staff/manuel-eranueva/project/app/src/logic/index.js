@@ -12,9 +12,7 @@ import retrieveCards from './retrieveCards'
 import retrieveUserCards from './retrieveUserCards'
 import retrieveUserBooks from './retrieveUserBooks'
 import addToBookshelf from './addToBookself'
-
-
-
+import removeBookFromBookshelf from './removeBookFromBookshelf'
 
 const logic = {
     registerUser,
@@ -30,7 +28,8 @@ const logic = {
     retrieveCards,
     retrieveUserCards,
     retrieveUserBooks,
-    addToBookshelf
+    addToBookshelf,
+    removeBookFromBookshelf
 }
 
 export default logic

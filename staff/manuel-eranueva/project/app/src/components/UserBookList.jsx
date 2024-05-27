@@ -1,42 +1,35 @@
-import { logger } from '../utils'
-import logic from '../logic'
-import { useState, useEffect } from 'react'
+import React from 'react'
 import { useContext } from '../context'
-import UserBook from './UserBook'
 
-function UserBookList({ stamp }) {
-    const [bookselves, setBookselves] = useState([])
-    const { showFeedback } = useContext()
+function UserBookList({ bookselves, editMode, onDeleteBook }) {
+    const { showConfirm } = useContext()
 
-    const loadBookSelves = () => {
-        logger.debug('PostList -> loadBookSelves')
-
-        try {
-            logic.retrieveUserBooks()
-                .then(setBookselves)
-                .catch(error => showFeedback(error, 'error'))
-        } catch (error) {
-            showFeedback(error)
-        }
+    const handleDeleteClick = (bookId) => {
+        showConfirm('delete book from bookshelf?', (confirmed) => {
+            if (confirmed) {
+                onDeleteBook(bookId)
+            }
+        })
     }
 
-    useEffect(() => {
-        loadBookSelves()
-    }, [stamp])
-
-    const handleCardDeleted = () => loadBookSelves()
-
-    logger.debug('UserBookList -> render')
-
     return (
-        <section className="bg-white p-4 rounded shadow-md mt-4">
-            {bookselves.length > 0 ? (
-                bookselves.map(card => (
-                    <UserBook key={card.id} item={card} onDeleted={handleCardDeleted} />
-                ))
-            ) : (
-                <p className="text-gray-500">No books available</p>
-            )}
+        <section>
+            {bookselves.map(bookself => (
+                <article key={bookself._id} className="p-4 border rounded shadow-md flex items-center justify-between">
+                    <div>
+                        <h3 className="font-bold">{bookself.book.name}</h3>
+                        <p className="text-gray-600">{bookself.book.author}</p>
+                    </div>
+                    {editMode && (
+                        <button
+                            onClick={() => handleDeleteClick(bookself.book._id)} // Asegúrate de pasar el `book._id`
+                            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded"
+                        >
+                            🗑️
+                        </button>
+                    )}
+                </article>
+            ))}
         </section>
     )
 }
