@@ -72,7 +72,7 @@ function App() {
 
     {feedback && <Feedback message={feedback.message} level={feedback.level} onAcceptClick={handleFeedbackAcceptClick} />}
 
-    {confirm && <Confirm message="BUENAS" onCancelClick={handleConfirmCancelClick} onAcceptClick={handleConfirmAcceptClick} />}
+    {confirm && <Confirm message="Delete card?" onCancelClick={handleConfirmCancelClick} onAcceptClick={handleConfirmAcceptClick} />}
   </>
 }
 
