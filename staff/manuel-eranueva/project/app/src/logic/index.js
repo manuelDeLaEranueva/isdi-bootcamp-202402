@@ -11,6 +11,7 @@ import createCard from './createCard'
 import retrieveCards from './retrieveCards'
 import retrieveUserCards from './retrieveUserCards'
 import retrieveUserBooks from './retrieveUserBooks'
+import addToBookshelf from './addToBookself'
 
 
 
@@ -28,7 +29,8 @@ const logic = {
     createCard,
     retrieveCards,
     retrieveUserCards,
-    retrieveUserBooks
+    retrieveUserBooks,
+    addToBookshelf
 }
 
 export default logic

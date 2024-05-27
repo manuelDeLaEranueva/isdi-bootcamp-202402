@@ -6,6 +6,7 @@ import createCard from './createCard.ts'
 import retrieveCards from './retrieveCards.ts'
 import removeCard from './removeCard.ts'
 import retrieveUserBooks from './retrieveUserBooks.ts'
+import addToBookshelf from './addToBookshelf.ts'
 
 const logic = {
     registerUser,
@@ -15,7 +16,8 @@ const logic = {
     createCard,
     retrieveCards,
     removeCard,
-    retrieveUserBooks
+    retrieveUserBooks,
+    addToBookshelf
 }
 
 export default logic
