@@ -400,7 +400,8 @@ mongoose.connect(MONGODB_URL)
                             logger.warn(error.message);
 
                         }
-                    });
+                    })
+
             } catch (error) {
                 if (error instanceof TypeError || error instanceof ContentError) {
                     logger.warn(error.message);
