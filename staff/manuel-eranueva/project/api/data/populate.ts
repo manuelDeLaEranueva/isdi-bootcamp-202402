@@ -7,25 +7,25 @@ mongoose.connect('mongodb://localhost:27017/project')
     .then(() => Book.deleteMany())
     .then(() => Book.create([
         {
-            image: 'https://example.com/image17.jpg',
+            image: 'https://pics.filmaffinity.com/One_Piece_Serie_de_TV-647985949-large.jpg',
             name: 'One Piece',
             author: 'Eiichiro Oda',
             country: 'Japan'
         },
         {
-            image: 'https://example.com/image18.jpg',
+            image: 'https://m.media-amazon.com/images/I/51iUNDapNML.jpg',
             name: 'Saga',
             author: 'Brian K. Vaughan',
             country: 'USA'
         },
         {
-            image: 'https://example.com/image19.jpg',
+            image: 'https://m.media-amazon.com/images/I/61wyk+JqlIL._AC_UF1000,1000_QL80_.jpg',
             name: 'Bone',
             author: 'Jeff Smith',
             country: 'USA'
         },
         {
-            image: 'https://example.com/image20.jpg',
+            image: 'https://m.media-amazon.com/images/I/81tst4OxzZL._SY425_.jpg',
             name: 'The Walking Dead',
             author: 'Robert Kirkman',
             country: 'USA'
