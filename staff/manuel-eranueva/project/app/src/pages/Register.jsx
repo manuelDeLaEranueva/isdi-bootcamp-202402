@@ -1,7 +1,5 @@
 import { logger } from '../utils'
-
 import logic from '../logic'
-
 import { useContext } from '../context'
 
 function Register({ onUserRegistered, onLoginClick }) {
@@ -21,7 +19,6 @@ function Register({ onUserRegistered, onLoginClick }) {
             logic.registerUser(name, email, username, password)
                 .then(() => {
                     form.reset()
-
                     onUserRegistered()
                 })
                 .catch(error => showFeedback(error, 'error'))
@@ -32,38 +29,52 @@ function Register({ onUserRegistered, onLoginClick }) {
 
     const handleLoginClick = event => {
         event.preventDefault()
-
         onLoginClick()
     }
 
     logger.debug('Register -> render')
 
     return (
-        <div className="flex justify-center items-center h-screen bg-white">
-            <main>
-                <h1 className="text-3xl font-bold mb-8">Register</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center mt-10">
-                    <div className="flex flex-col mb-4">
-                        <label htmlFor="name" className="text-gray-800 mb-1">Name</label>
-                        <input type="text" id="name" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
+        <main className="flex flex-col items-center justify-center h-screen bg-white">
+            <img src="../../public/bookself.png" alt="bookself" className="w-64 h-auto relative -top-24" />
+            <h1 className="text-3xl font-bold mb-8">Register</h1>
 
-                        <label htmlFor="email" className="text-gray-800 mb-1 mt-2">E-mail</label>
-                        <input type="email" id="email" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
+            <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-6">
+                <div className="flex flex-col space-y-1">
+                    <label htmlFor="name" className="text-lg font-semibold">
+                        Name
+                    </label>
+                    <input type="text" id="name" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                </div>
 
-                        <label htmlFor="username" className="text-gray-800 mb-1 mt-2">Username</label>
-                        <input id="username" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
+                <div className="flex flex-col space-y-1">
+                    <label htmlFor="email" className="text-lg font-semibold">
+                        E-mail
+                    </label>
+                    <input type="email" id="email" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                </div>
 
-                        <label htmlFor="password" className="text-gray-800 mb-1 mt-2">Password</label>
-                        <input type="password" id="password" className="border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none" />
-                    </div>
+                <div className="flex flex-col space-y-1">
+                    <label htmlFor="username" className="text-lg font-semibold">
+                        Username
+                    </label>
+                    <input id="username" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                </div>
 
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded mt-2 focus:outline-none" type="submit">Register</button>
-                </form>
-            </main>
-            <div class="fixed bottom-8 items-center">
-                <a href="" onClick={handleLoginClick} class="text-blue-500 mt-2 font-semibold">Login</a>
-            </div>
-        </div>
+                <div className="flex flex-col space-y-1">
+                    <label htmlFor="password" className="text-lg font-semibold">
+                        Password
+                    </label>
+                    <input type="password" id="password" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                </div>
+
+                <button className="bg-[#050CA6] text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 focus:outline-none" type="submit">
+                    Register
+                </button>
+            </form>
+
+            <a href="#" onClick={handleLoginClick} className="text-blue-500 mt-4 hover:underline">Login</a>
+        </main>
     )
 }
 

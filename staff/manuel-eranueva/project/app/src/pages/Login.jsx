@@ -34,20 +34,25 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
     return (
         <main className="flex flex-col items-center justify-center h-screen bg-white">
+            <img src="../../public/bookself.png" alt="bookself" className="w-64 h-auto relative -top-24" />
             <h1 className="text-3xl font-bold mb-8">Login</h1>
 
-            <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
-                <label htmlFor="username" className="text-lg font-semibold">
-                    Username
-                </label>
-                <input id="username" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+            <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-6">
+                <div className="flex flex-col space-y-1">
+                    <label htmlFor="username" className="text-lg font-semibold">
+                        Username
+                    </label>
+                    <input id="username" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                </div>
 
-                <label htmlFor="password" className="text-lg font-semibold">
-                    Password
-                </label>
-                <input type="password" id="password" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                <div className="flex flex-col space-y-1">
+                    <label htmlFor="password" className="text-lg font-semibold">
+                        Password
+                    </label>
+                    <input type="password" id="password" className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none" />
+                </div>
 
-                <button className="bg-blue-500 text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 focus:outline-none" type="submit">
+                <button className="bg-[#050CA6] text-white font-semibold py-2 px-6 rounded hover:bg-blue-600 focus:outline-none" type="submit">
                     Login
                 </button>
             </form>
