@@ -4,7 +4,7 @@ import logic from './logic'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
-import Profile from './pages/Profile' // Importa el componente Profile
+import Profile from './pages/Profile'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Feedback from './components/Feedback'
 import { useState } from 'react'

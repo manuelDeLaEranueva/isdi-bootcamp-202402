@@ -11,7 +11,7 @@ function retrieveBooks(userId): Promise<[{ image: String, name: String, author: 
     return User.findById(userId)
         .catch(error => { throw new SystemError(error.message) })
         .then(user => {
-            if (!user) throw new NotFoundError('user not found')
+            if (!user) throw new NotFoundError('User not found')
 
             return Book.find().lean().exec()
                 .catch(error => { throw new SystemError(error.message) })
