@@ -81,26 +81,12 @@ function Home({ onUserLoggedOut }) {
 
     return (
         <>
-            <header className="py-4 px-8 bg-gray-800 text-white flex justify-between items-center">
-                {user && <h1 className="text-3xl font-bold">{user.name}'s Bookshelf</h1>}
-                <nav>
-                    <button onClick={handleLogoutClick} className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
-                        🚪 Logout
-                    </button>
-                    <Link to="/profile">Go to Profile</Link>
-                </nav>
-            </header>
-            <main className="p-8">
+            <main className="p-8 flex-grow">
                 {popupOpen && selectedBook && (
                     <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleCardCreated} context="addCard" />
                 )}
                 <CardList cards={cards} onDeleted={handleCardDelete} />
             </main>
-            <footer className="fixed bottom-0 w-full bg-white shadow-md p-4">
-                <button onClick={() => setSearchVisible(true)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                    ➕ Add Card
-                </button>
-            </footer>
             {searchVisible && (
                 <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg relative">
@@ -112,6 +98,17 @@ function Home({ onUserLoggedOut }) {
                     </div>
                 </div>
             )}
+            <footer className="fixed bottom-0 w-full bg-white shadow-md p-4 flex justify-evenly">
+                <button onClick={() => setSearchVisible(true)} className="border border-blue-500 text-blue-500 font-semibold py-2 px-6 rounded hover:bg-blue-500 hover:text-white focus:outline-none">
+                    ➕ Add Card
+                </button>
+                <button onClick={handleLogoutClick} className="border border-blue-500 text-blue-500 font-semibold py-2 px-6 rounded hover:bg-blue-500 hover:text-white focus:outline-none">
+                    🚪 Logout
+                </button>
+                <Link to="/profile" className="border border-blue-500 text-blue-500 font-semibold py-2 px-6 rounded hover:bg-blue-500 hover:text-white focus:outline-none flex items-center justify-center">
+                    Go to Profile
+                </Link>
+            </footer>
         </>
     )
 }
