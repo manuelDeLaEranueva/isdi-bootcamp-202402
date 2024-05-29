@@ -1,36 +1,36 @@
-import { logger } from '../utils'
-import logic from '../logic'
-import { useState, useEffect } from 'react'
-import Card from './Card'
-import { useContext } from '../context'
+import { logger } from '../utils';
+import logic from '../logic';
+import { useState, useEffect } from 'react';
+import Card from './Card';
+import { useContext } from '../context';
 
 function CardList({ cards: initialCards, onDeleted }) {
-    const [cards, setCards] = useState(initialCards)
-    const { showFeedback } = useContext()
+    const [cards, setCards] = useState(initialCards);
+    const { showFeedback } = useContext();
 
     useEffect(() => {
-        logger.debug('CardList -> loadCards')
+        logger.debug('CardList -> loadCards');
 
         try {
             logic.retrieveCards()
                 .then(setCards)
-                .catch(error => showFeedback(error, 'error'))
+                .catch(error => showFeedback(error, 'error'));
         } catch (error) {
-            showFeedback(error)
+            showFeedback(error);
         }
-    }, [])
+    }, [initialCards, showFeedback]);
 
     const handleCardDelete = (deletedCardId) => {
         logic.removeCard(deletedCardId)
             .then(() => {
-                const updatedCards = cards.filter(card => card._id !== deletedCardId)
-                setCards(updatedCards)
-                onDeleted(deletedCardId)
+                const updatedCards = cards.filter(card => card._id !== deletedCardId);
+                setCards(updatedCards);
+                onDeleted(deletedCardId);
             })
-            .catch(error => showFeedback(error, 'error'))
-    }
+            .catch(error => showFeedback(error, 'error'));
+    };
 
-    logger.debug('CardList -> render')
+    logger.debug('CardList -> render');
 
     return (
         <section>
@@ -42,7 +42,7 @@ function CardList({ cards: initialCards, onDeleted }) {
                 />
             ))}
         </section>
-    )
+    );
 }
 
-export default CardList
+export default CardList;

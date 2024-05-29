@@ -6,6 +6,7 @@ import UserBookList from '../components/UserBookList';
 import BookList from '../components/BookList';
 import Popup from '../components/Popup';
 
+
 function Profile() {
     const { showFeedback } = useContext();
     const [user, setUser] = useState(null);
@@ -29,6 +30,8 @@ function Profile() {
         }
         fetchData();
     }, []);
+
+
 
     const handleSelectedBook = (book) => {
         setSelectedBook(book);
@@ -84,6 +87,8 @@ function Profile() {
                 <button onClick={() => setEditMode(!editMode)} className="text-[#050CA6] font-bold py-1 px-2 rounded">
                     <img src="../../public/edit.png" className="w-9 h-9" />
                 </button>
+
+
             </footer>
 
             {searchVisible && (
