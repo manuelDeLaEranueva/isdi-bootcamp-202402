@@ -32,19 +32,20 @@ function Card({ item: card, onDeleted }) {
     }
 
     return (
-        <article className="card p-4 border rounded shadow-md">
-            <h3 className="font-bold">{owner.username}</h3>
-            {book.image && <img src={book.image} alt={`Cover of ${book.name}`} className="w-full h-auto" />}
-            <p className="text-lg font-semibold">{book.name}</p>
-            <p className="text-gray-600">{book.author}</p>
+        <article className="card p-4 border rounded shadow-md relative">
+            <h3 className="font-bold text-[#050CA6] mb-2">{owner.username}</h3>
+            {book.image && <img src={book.image} alt={`Cover of ${book.name}`} className="w-full h-auto mb-2" />}
+            <p className="text-lg font-semibold mb-2">{book.name}</p>
+            <p className="text-gray-600 mb-8">{book.author}</p>
             {logic.getLoggedInUserId() === owner._id && (
                 <button
                     onClick={() => handleDeleteClick(card._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded mt-2"
+                    className="absolute bottom-2 right-2 hover:bg-black-600 text-white font-semibold py-1 px-2 rounded"
                 >
-                    🗑️
+                    <img src="../../public/bin.png" className="w-6" />
                 </button>
             )}
+            <a href={`mailto:${card.owner.email}?Subject=Intereseted%20in%20${book.name}`} title="Contact by mail" className="absolute bottom-2 left-2"><img src="../../public/mail.png" className="w-6" /></a>
         </article>
     )
 }

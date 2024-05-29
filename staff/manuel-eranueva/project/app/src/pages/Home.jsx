@@ -98,16 +98,18 @@ function Home({ onUserLoggedOut }) {
                     </div>
                 </div>
             )}
-            <footer className="fixed bottom-0 w-full bg-white shadow-md p-4 flex justify-evenly">
-                <button onClick={() => setSearchVisible(true)} className="border border-blue-500 text-blue-500 font-semibold py-2 px-6 rounded hover:bg-blue-500 hover:text-white focus:outline-none">
-                    ➕ Add Card
+            <footer className="fixed bottom-0 w-full bg-white shadow-md p-2 flex justify-around">
+                <button onClick={() => setSearchVisible(true)} className="text-[#050CA6] font-bold py-1 px-2 rounded">
+                    <img src="../../public/plus.png" className="w-9 h-9" />
                 </button>
-                <button onClick={handleLogoutClick} className="border border-blue-500 text-blue-500 font-semibold py-2 px-6 rounded hover:bg-blue-500 hover:text-white focus:outline-none">
-                    🚪 Logout
-                </button>
-                <Link to="/profile" className="border border-blue-500 text-blue-500 font-semibold py-2 px-6 rounded hover:bg-blue-500 hover:text-white focus:outline-none flex items-center justify-center">
-                    Go to Profile
+
+                <Link to="/profile" className="text-[#050CA6] font-bold py-1 px-2 rounded text-center">
+                    <img src="../../public/profile.png" className="w-12 h-12" />
                 </Link>
+                
+                <button onClick={handleLogoutClick} className="text-[#050CA6] font-bold py-1 px-2 rounded">
+                    <img src="../../public/logout.png" className="w-9 h-9" />
+                </button>
             </footer>
         </>
     )

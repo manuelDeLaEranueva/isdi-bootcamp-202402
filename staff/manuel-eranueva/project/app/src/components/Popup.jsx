@@ -29,8 +29,8 @@ function Popup({ book, onClose, onActionCompleted, context }) {
     }
 
     return (
-        <div className="popup fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
-            <div className="popup-content bg-white p-8 rounded-lg">
+        <div className="popup fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+            <div className="popup-content bg-white p-8 rounded-lg relative">
                 <span className="close absolute top-4 right-4 text-2xl cursor-pointer" onClick={onClose}>&times;</span>
                 <h2 className="text-xl font-semibold">{book.name}</h2>
                 <p className="text-gray-600">Author: {book.author}</p>
