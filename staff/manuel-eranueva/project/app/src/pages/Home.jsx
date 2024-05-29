@@ -17,31 +17,18 @@ function Home({ onUserLoggedOut }) {
     const { showFeedback } = useContext();
 
     useEffect(() => {
-        try {
-            logic.retrieveUser()
-                .then(setUser)
-                .catch(error => showFeedback(error, 'error'));
-        } catch (error) {
-            showFeedback(error);
-        }
-    }, []);
+        async function fetchData() {
+            try {
+                const userData = await logic.retrieveUser();
+                setUser(userData);
 
-    useEffect(() => {
-        try {
-            logic.retrieveBooks()
-                .then(setBooks)
-                .catch(error => showFeedback(error, 'error'));
-        } catch (error) {
-            showFeedback(error);
-        }
-    }, []);
-
-    useEffect(() => {
-        logic.retrieveCards()
-            .then(cards => {
+                const cards = await logic.retrieveCards();
                 setCards(cards);
-            })
-            .catch(error => console.error('Error retrieving cards:', error));
+            } catch (error) {
+                showFeedback(error, 'error');
+            }
+        }
+        fetchData();
     }, []);
 
     const handleLogoutClick = () => {
@@ -75,7 +62,11 @@ function Home({ onUserLoggedOut }) {
     };
 
     const handleCardDelete = (deletedCardId) => {
-        setCards(cards.filter(card => card._id !== deletedCardId));
+        logic.removeCard(deletedCardId)
+            .then(() => {
+                setCards(prevCards => prevCards.filter(card => card._id !== deletedCardId));
+            })
+            .catch(error => console.error('Error deleting card:', error));
     };
 
     return (

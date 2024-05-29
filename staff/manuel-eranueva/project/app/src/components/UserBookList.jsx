@@ -24,7 +24,7 @@ function UserBookList({ bookselves, editMode, onDeleteBook }) {
                         {editMode && (
                             <button
                                 onClick={() => handleDeleteClick(bookself.book._id)}
-                                className="hover:bg-red-600 text-white font-semibold py-1 px-2 rounded"
+                                className="hover:bg-black-600 text-white font-semibold py-1 px-2 rounded"
                             >
                                 <img src="../../public/bin.png" className="w-6 h-6" alt="delete" />
                             </button>
