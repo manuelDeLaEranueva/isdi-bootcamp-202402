@@ -84,13 +84,13 @@ function Home({ onUserLoggedOut }) {
                 <div className="max-w-screen-lg mx-auto flex justify-between items-center px-4">
                     <img src="/logo.png" className="w-12 h-12 ml-3" alt="Logo" />
                     {user && (
-                        <h1 className="text-[#000568] font-bold text-xl mr-3">
+                        <h1 className="text-[#000568] font-bold text-xl mr-3 self-end">
                             Hi, {user.name}!
                         </h1>
                     )}
                 </div>
             </header>
-            <main className="p-8 flex-grow pt-20 pb-16 max-w-screen-lg mx-auto"> {/* Cambio aquí */}
+            <main className="p-8 flex-grow pt-20 pb-16 max-w-screen-lg mx-auto">
                 {popupOpen && selectedBook && (
                     <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleCardCreated} context="addCard" />
                 )}
@@ -99,7 +99,6 @@ function Home({ onUserLoggedOut }) {
             {searchVisible && (
                 <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg relative">
-                        <button onClick={() => setSearchVisible(false)} className="absolute top-4 right-4 text-2xl">&times;</button>
                         <BookList onBookSelect={handleSelectedBook} />
                         <button onClick={() => setSearchVisible(false)} className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
                             Cancel
@@ -107,13 +106,13 @@ function Home({ onUserLoggedOut }) {
                     </div>
                 </div>
             )}
-            <footer className="fixed bottom-0 w-full bg-white shadow-md p-2 flex justify-around outline outline-2 outline-[#000568]">
+            <footer className="fixed bottom-0 w-full bg-white shadow-md p-2 z-50 flex justify-around outline outline-2 outline-[#000568]">
                 <button onClick={() => setSearchVisible(true)} className="text-[#050CA6] font-bold py-1 px-2 rounded">
                     <img src="../../public/plus.png" className="w-9 h-9" />
                 </button>
 
                 <Link to="/profile" className="text-[#050CA6] font-bold py-1 px-2 rounded text-center">
-                    <img src="../../public/profile.png" className="w-12 h-12" />
+                    <img src="../../public/profile.png" className="w-9 h-9" />
                 </Link>
 
                 <button onClick={handleLogoutClick} className="text-[#050CA6] font-bold py-1 px-2 rounded">
