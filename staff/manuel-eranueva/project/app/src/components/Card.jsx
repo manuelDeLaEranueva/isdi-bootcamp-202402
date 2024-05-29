@@ -38,7 +38,7 @@ function Card({ item: card, onDeleted }) {
             <h3 className="font-bold text-[#050CA6] mb-2">{owner.username}</h3>
             {book.image && <img src={book.image} alt={`Cover of ${book.name}`} className="w-full h-auto mb-2" />}
             <p className="text-lg font-semibold mb-2">{book.name}</p>
-            <p className="text-gray-600 mb-8">{book.author}</p>
+            <p className="text-gray-600 mb-2">{book.author}</p>
             {isLoggedInUser && (
                 <button
                     onClick={() => handleDeleteClick(card._id)}

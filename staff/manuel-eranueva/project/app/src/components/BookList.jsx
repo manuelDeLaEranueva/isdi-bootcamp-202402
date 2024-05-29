@@ -39,7 +39,7 @@ function BookList({ onBookSelect }) {
                 value={query}
                 placeholder='Write title or author'
                 onChange={handleSearch}
-                className="px-4 py-2 border rounded-md pr-10 w-full"
+                className="px-4 py-2 border rounded-md pr-10 w-full text-[#000568]"
             />
             <ul className="mt-4 max-h-96 overflow-y-auto">
                 {searchedBooks.map(book => (

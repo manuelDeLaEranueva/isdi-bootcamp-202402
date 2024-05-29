@@ -90,7 +90,7 @@ function Home({ onUserLoggedOut }) {
                     )}
                 </div>
             </header>
-            <main className="p-8 flex-grow pt-20 max-w-screen-lg mx-auto">
+            <main className="p-8 flex-grow pt-20 pb-16 max-w-screen-lg mx-auto"> {/* Cambio aquí */}
                 {popupOpen && selectedBook && (
                     <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleCardCreated} context="addCard" />
                 )}
