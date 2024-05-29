@@ -1,63 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import logic from '../logic';
-import { useContext } from '../context';
-import UserBookList from '../components/UserBookList';
-import BookList from '../components/BookList';
-import Popup from '../components/Popup';
-
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import logic from '../logic'
+import { useContext } from '../context'
+import UserBookList from '../components/UserBookList'
+import BookList from '../components/BookList'
+import Popup from '../components/Popup'
 
 function Profile() {
-    const { showFeedback } = useContext();
-    const [user, setUser] = useState(null);
-    const [bookselves, setBookselves] = useState([]);
-    const [selectedBook, setSelectedBook] = useState(null);
-    const [popupOpen, setPopupOpen] = useState(false);
-    const [searchVisible, setSearchVisible] = useState(false);
-    const [editMode, setEditMode] = useState(false);
+    const { showFeedback } = useContext()
+    const [user, setUser] = useState(null)
+    const [bookselves, setBookselves] = useState([])
+    const [selectedBook, setSelectedBook] = useState(null)
+    const [popupOpen, setPopupOpen] = useState(false)
+    const [searchVisible, setSearchVisible] = useState(false)
+    const [editMode, setEditMode] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const userData = await logic.retrieveUser();
-                setUser(userData);
+                const userData = await logic.retrieveUser()
+                setUser(userData)
 
-                const bookselves = await logic.retrieveUserBooks();
-                setBookselves(bookselves);
+                const bookselves = await logic.retrieveUserBooks()
+                setBookselves(bookselves)
             } catch (error) {
-                alert(error);
+                alert(error)
             }
         }
-        fetchData();
-    }, []);
-
-
+        fetchData()
+    }, [])
 
     const handleSelectedBook = (book) => {
-        setSelectedBook(book);
-        setSearchVisible(false);
-        setPopupOpen(true);
-    };
+        setSelectedBook(book)
+        setSearchVisible(false)
+        setPopupOpen(true)
+    }
 
     const handleClosePopup = () => {
-        setSelectedBook(null);
-        setPopupOpen(false);
-    };
+        setSelectedBook(null)
+        setPopupOpen(false)
+    }
 
     const handleBookAdded = () => {
-        setPopupOpen(false);
+        setPopupOpen(false)
         logic.retrieveUserBooks()
             .then(setBookselves)
-            .catch(error => console.error('Error retrieving bookshelves:', error));
-    };
+            .catch(error => console.error('Error retrieving bookshelves:', error))
+    }
 
     const handleDeleteBook = (bookId) => {
         logic.removeBookFromBookshelf(bookId)
             .then(() => {
-                setBookselves(prevBookselves => prevBookselves.filter(book => book.book._id !== bookId));
+                setBookselves(prevBookselves => prevBookselves.filter(book => book.book._id !== bookId))
             })
-            .catch(error => console.error('Error deleting book from bookshelf:', error));
-    };
+            .catch(error => console.error('Error deleting book from bookshelf:', error))
+    }
 
     return (
         <section className="min-h-screen flex flex-col justify-start bg-white">
@@ -87,8 +84,6 @@ function Profile() {
                 <button onClick={() => setEditMode(!editMode)} className="text-[#050CA6] font-bold py-1 px-2 rounded">
                     <img src="../../public/edit.png" className="w-9 h-9" />
                 </button>
-
-
             </footer>
 
             {searchVisible && (
@@ -105,7 +100,7 @@ function Profile() {
                 <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleBookAdded} context="addToBookshelf" />
             )}
         </section>
-    );
+    )
 }
 
-export default Profile;
+export default Profile

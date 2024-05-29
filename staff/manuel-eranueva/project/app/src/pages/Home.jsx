@@ -1,73 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import logic from '../logic';
-import BookList from '../components/BookList';
-import Popup from '../components/Popup';
-import CardList from '../components/CardList';
-import { Link } from 'react-router-dom';
-import { useContext } from '../context';
+import React, { useState, useEffect } from 'react'
+import logic from '../logic'
+import BookList from '../components/BookList'
+import Popup from '../components/Popup'
+import CardList from '../components/CardList'
+import { Link } from 'react-router-dom'
+import { useContext } from '../context'
 
 function Home({ onUserLoggedOut }) {
-    const [user, setUser] = useState(null);
-    const [books, setBooks] = useState([]);
-    const [selectedBook, setSelectedBook] = useState(null);
-    const [popupOpen, setPopupOpen] = useState(false);
-    const [cards, setCards] = useState([]);
-    const [searchVisible, setSearchVisible] = useState(false);
+    const [user, setUser] = useState(null)
+    const [books, setBooks] = useState([])
+    const [selectedBook, setSelectedBook] = useState(null)
+    const [popupOpen, setPopupOpen] = useState(false)
+    const [cards, setCards] = useState([])
+    const [searchVisible, setSearchVisible] = useState(false)
 
-    const { showFeedback } = useContext();
+    const { showFeedback } = useContext()
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const userData = await logic.retrieveUser();
-                setUser(userData);
+                const userData = await logic.retrieveUser()
+                setUser(userData)
 
-                const cards = await logic.retrieveCards();
-                setCards(cards);
+                const cards = await logic.retrieveCards()
+                setCards(cards)
             } catch (error) {
-                showFeedback(error, 'error');
+                showFeedback(error, 'error')
             }
         }
-        fetchData();
-    }, []);
+        fetchData()
+    }, [])
 
     const handleLogoutClick = () => {
         try {
-            logic.logoutUser();
-            onUserLoggedOut();
+            logic.logoutUser()
+            onUserLoggedOut()
         } catch (error) {
-            console.error('Logout failed:', error);
-            logic.cleanUpLoggedInUserId();
+            console.error('Logout failed:', error)
+            logic.cleanUpLoggedInUserId()
         }
-    };
+    }
 
     const handleSelectedBook = (book) => {
-        setSelectedBook(book);
-        setSearchVisible(false);
-        setPopupOpen(true);
-    };
+        setSelectedBook(book)
+        setSearchVisible(false)
+        setPopupOpen(true)
+    }
 
     const handleClosePopup = () => {
-        setSelectedBook(null);
-        setPopupOpen(false);
-    };
+        setSelectedBook(null)
+        setPopupOpen(false)
+    }
 
     const handleCardCreated = () => {
-        setPopupOpen(false);
+        setPopupOpen(false)
         logic.retrieveCards()
             .then(cards => {
-                setCards(cards);
+                setCards(cards)
             })
-            .catch(error => console.error('Error retrieving cards:', error));
-    };
+            .catch(error => console.error('Error retrieving cards:', error))
+    }
 
     const handleCardDelete = (deletedCardId) => {
         logic.removeCard(deletedCardId)
             .then(() => {
-                setCards(prevCards => prevCards.filter(card => card._id !== deletedCardId));
+                setCards(prevCards => prevCards.filter(card => card._id !== deletedCardId))
             })
-            .catch(error => console.error('Error deleting card:', error));
-    };
+            .catch(error => console.error('Error deleting card:', error))
+    }
 
     return (
         <>
@@ -111,7 +111,7 @@ function Home({ onUserLoggedOut }) {
                 </button>
             </footer>
         </>
-    );
+    )
 }
 
-export default Home;
+export default Home

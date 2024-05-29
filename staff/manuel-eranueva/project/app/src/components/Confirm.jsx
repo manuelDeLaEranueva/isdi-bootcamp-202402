@@ -16,7 +16,7 @@ function Confirm({ message, onAcceptClick, onCancelClick }) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Confirm;
+export default Confirm

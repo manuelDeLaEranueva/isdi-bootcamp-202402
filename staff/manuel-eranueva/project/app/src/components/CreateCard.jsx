@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import logic from '../logic';
+import React, { useState } from 'react'
+import logic from '../logic'
 
 function CreateCard({ onCancelClick, onCardCreated }) {
-    const [bookId, setBookId] = useState('');
+    const [bookId, setBookId] = useState('')
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         try {
-            await logic.createCard(bookId);
-            onCardCreated(); // Llama a la función de actualización de tarjetas después de crear una nueva tarjeta
+            await logic.createCard(bookId)
+            onCardCreated() // IMPORTANTE: aquí llamamos para actualizar la lista de tarjetas después de crear una!!!!
         } catch (error) {
-            console.error('Error creating card:', error);
+            console.error('Error creating card:', error)
         }
-    };
+    }
 
     return (
         <div>
@@ -31,7 +31,7 @@ function CreateCard({ onCancelClick, onCardCreated }) {
                 <button onClick={onCancelClick}>Cancel</button>
             </form>
         </div>
-    );
+    )
 }
 
-export default CreateCard;
+export default CreateCard

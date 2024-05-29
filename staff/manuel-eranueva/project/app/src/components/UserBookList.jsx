@@ -1,16 +1,16 @@
-import React from 'react';
-import { useContext } from '../context';
+import React from 'react'
+import { useContext } from '../context'
 
 function UserBookList({ bookselves, editMode, onDeleteBook }) {
-    const { showConfirm } = useContext();
+    const { showConfirm } = useContext()
 
     const handleDeleteClick = (bookId) => {
         showConfirm('delete book from bookshelf?', (confirmed) => {
             if (confirmed) {
-                onDeleteBook(bookId);
+                onDeleteBook(bookId)
             }
-        });
-    };
+        })
+    }
 
     return (
         <section>
@@ -34,7 +34,7 @@ function UserBookList({ bookselves, editMode, onDeleteBook }) {
                 </React.Fragment>
             ))}
         </section>
-    );
+    )
 }
 
-export default UserBookList;
+export default UserBookList

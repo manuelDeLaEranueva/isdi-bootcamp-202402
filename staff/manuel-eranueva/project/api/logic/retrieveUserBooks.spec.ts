@@ -3,7 +3,6 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import logic from './index.ts'
 import { expect } from 'chai'
-import sinon from 'sinon'
 import { errors } from 'com'
 import { User, Book, MyBookself } from '../data/index.ts'
 
