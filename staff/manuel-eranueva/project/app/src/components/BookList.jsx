@@ -32,6 +32,8 @@ function BookList({ onBookSelect }) {
         }
     }
 
+    console.log(books)
+
     return (
         <div className="mt-4">
             <input

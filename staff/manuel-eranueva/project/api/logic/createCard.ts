@@ -23,7 +23,7 @@ function createCard(userId: string, bookId: string): Promise<void> {
                 book: book._id
             }
 
-            return Card.create({ owner: user._id, book: book._id })
+            return Card.create(card)
                 .catch(error => { throw new SystemError(error.message) })
         })
         .then(card => { })

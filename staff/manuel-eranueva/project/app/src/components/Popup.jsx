@@ -4,7 +4,7 @@ import logic from '../logic'
 function Popup({ book, onClose, onActionCompleted, context }) {
     const handleActionClick = () => {
         if (context === 'addCard') {
-            logic.createCard(book._id)
+            logic.createCard(book.id)
                 .then(() => {
                     onActionCompleted()
                     onClose()
@@ -13,7 +13,7 @@ function Popup({ book, onClose, onActionCompleted, context }) {
                     console.error('Error creating card:', error)
                 })
         } else if (context === 'addToBookshelf') {
-            logic.addToBookshelf(book._id)
+            logic.addToBookshelf(book.id)
                 .then(() => {
                     onActionCompleted()
                     onClose()

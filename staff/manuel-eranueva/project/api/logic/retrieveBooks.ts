@@ -1,21 +1,39 @@
-import { validate, errors } from 'com'
+import { validate, errors } from 'com';
+import { User, Book } from '../data/index.ts';
 
-import { User, Book } from '../data/index.ts'
+const { SystemError, NotFoundError } = errors;
 
-const { SystemError, NotFoundError } = errors
-
-function retrieveBooks(userId): Promise<[{ image: String, name: String, author: String }] | { image: String, name: String, author: String }[]> {
-
-    validate.text(userId, 'userId', true)
-
-    return User.findById(userId)
-        .catch(error => { throw new SystemError(error.message) })
-        .then(user => {
-            if (!user) throw new NotFoundError('User not found')
-
-            return Book.find().lean().exec()
-                .catch(error => { throw new SystemError(error.message) })
-        })
+type BookResponse = {
+    id: string;
+    image: string;
+    name: string;
+    author: string;
 }
 
-export default retrieveBooks
+function retrieveBooks(userId: string): Promise<BookResponse[]> {
+    validate.text(userId, 'userId', true);
+
+    return User.findById(userId)
+        .then(user => {
+            if (!user) {
+                throw new NotFoundError('User not found');
+            }
+            return Book.find().lean();
+        })
+        .then(books => {
+            return books.map(book => ({
+                id: book._id.toString(),
+                image: book.image,
+                name: book.name,
+                author: book.author
+            }));
+        })
+        .catch(error => {
+            if (error instanceof NotFoundError) {
+                return Promise.reject(error);
+            }
+            return Promise.reject(new SystemError(error.message));
+        });
+}
+
+export default retrieveBooks;
