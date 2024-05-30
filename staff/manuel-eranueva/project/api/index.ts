@@ -236,7 +236,7 @@ mongoose.connect(MONGODB_URL)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-                logic.retrieveCards()
+                logic.retrieveCards(userId as string)
                     .then(cards => res.json(cards))
                     .catch(error => {
                         if (error instanceof SystemError) {

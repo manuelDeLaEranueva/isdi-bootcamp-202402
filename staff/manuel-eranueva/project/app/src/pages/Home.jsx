@@ -64,7 +64,7 @@ function Home({ onUserLoggedOut }) {
     const handleCardDelete = (deletedCardId) => {
         logic.removeCard(deletedCardId)
             .then(() => {
-                setCards(prevCards => prevCards.filter(card => card._id !== deletedCardId))
+                setCards(prevCards => prevCards.filter(card => card.id !== deletedCardId))
             })
             .catch(error => console.error('Error deleting card:', error))
     }

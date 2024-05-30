@@ -43,7 +43,7 @@ function BookList({ onBookSelect }) {
             />
             <ul className="mt-4 max-h-96 overflow-y-auto">
                 {searchedBooks.map(book => (
-                    <li key={book._id} className="py-2">
+                    <li key={book.id} className="py-2">
                         <button onClick={(event) => handleSelectedBook(event, book)} className="text-black font-semibold hover:underline">
                             {book.name}
                         </button>

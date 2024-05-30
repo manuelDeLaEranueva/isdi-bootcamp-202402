@@ -23,22 +23,22 @@ function CardList({ cards: initialCards, onDeleted }) {
     const handleCardDelete = (deletedCardId) => {
         logic.removeCard(deletedCardId)
             .then(() => {
-                const updatedCards = cards.filter(card => card._id !== deletedCardId)
+                const updatedCards = cards.filter(card => card.id !== deletedCardId)
                 setCards(updatedCards)
                 onDeleted(deletedCardId)
             })
             .catch(error => showFeedback(error, 'error'))
     }
-
+    console.log(cards)
     logger.debug('CardList -> render')
 
     return (
         <section>
             {cards.map(card => (
                 <Card
-                    key={card._id}
+                    key={card.id}
                     item={card}
-                    onDeleted={() => handleCardDelete(card._id)}
+                    onDeleted={() => handleCardDelete(card.id)}
                 />
             ))}
         </section>

@@ -31,7 +31,7 @@ function Card({ item: card, onDeleted }) {
         return null
     }
 
-    const isLoggedInUser = logic.getLoggedInUserId() === owner._id
+    const isLoggedInUser = logic.getLoggedInUserId() === owner.id
 
     return (
         <article className="card p-4 border rounded shadow-md relative">
@@ -41,7 +41,7 @@ function Card({ item: card, onDeleted }) {
             <p className="text-gray-600 mb-2">{book.author}</p>
             {isLoggedInUser && (
                 <button
-                    onClick={() => handleDeleteClick(card._id)}
+                    onClick={() => handleDeleteClick(card.id)}
                     className="absolute bottom-12 right-2 hover:bg-black-600 text-white font-semibold py-1 px-2 rounded"
                 >
                     <img src="../../public/bin.png" className="w-6" />
