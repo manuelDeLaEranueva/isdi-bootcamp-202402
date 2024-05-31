@@ -15,7 +15,7 @@ function UserBookList({ bookselves, editMode, onDeleteBook }) {
     return (
         <section>
             {bookselves.map((bookself, index) => (
-                <React.Fragment key={bookself._id}>
+                <React.Fragment key={bookself.id}>
                     <article className="p-4 flex items-center justify-between">
                         <div>
                             <h3 className="font-bold text-[#000568]">{bookself.book.name}</h3>
@@ -23,7 +23,7 @@ function UserBookList({ bookselves, editMode, onDeleteBook }) {
                         </div>
                         {editMode && (
                             <button
-                                onClick={() => handleDeleteClick(bookself.book._id)}
+                                onClick={() => handleDeleteClick(bookself.book.id)}
                                 className="hover:bg-black-600 text-white font-semibold py-1 px-2 rounded"
                             >
                                 <img src="../../public/bin.png" className="w-6 h-6" alt="delete" />

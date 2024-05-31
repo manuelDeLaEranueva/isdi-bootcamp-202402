@@ -51,11 +51,11 @@ function Profile() {
     const handleDeleteBook = (bookId) => {
         logic.removeBookFromBookshelf(bookId)
             .then(() => {
-                setBookselves(prevBookselves => prevBookselves.filter(book => book.book._id !== bookId))
+                setBookselves(prevBookselves => prevBookselves.filter(book => book.book.id !== bookId))
             })
             .catch(error => console.error('Error deleting book from bookshelf:', error))
     }
-
+    console.log(bookselves)
     return (
         <section className="min-h-screen flex flex-col justify-start bg-white">
             <header className="fixed top-0 w-full bg-white shadow-md p-2 z-50">
