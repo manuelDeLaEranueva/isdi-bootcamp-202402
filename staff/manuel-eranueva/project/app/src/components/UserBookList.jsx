@@ -15,7 +15,7 @@ function UserBookList({ bookselves, editMode, onDeleteBook }) {
     return (
         <section>
             {bookselves.map((bookself, index) => (
-                <React.Fragment key={bookself.id}>
+                <div key={bookself.id}>
                     <article className="p-4 flex items-center justify-between">
                         <div>
                             <h3 className="font-bold text-[#000568]">{bookself.book.name}</h3>
@@ -31,7 +31,7 @@ function UserBookList({ bookselves, editMode, onDeleteBook }) {
                         )}
                     </article>
                     {index < bookselves.length - 1 && <hr className="border-gray-300 my-2" />}
-                </React.Fragment>
+                </div>
             ))}
         </section>
     )

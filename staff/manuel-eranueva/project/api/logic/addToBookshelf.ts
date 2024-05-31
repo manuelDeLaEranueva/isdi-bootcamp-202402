@@ -4,8 +4,8 @@ import { User, Book, MyBookself } from '../data/index.ts'
 const { SystemError, NotFoundError } = errors
 
 function addToBookshelf(userId, bookId) {
-    // validate.text(userId, 'userId', true)
-    // validate.text(bookId, 'bookId', true)
+    validate.text(userId, 'userId', true)
+    validate.text(bookId, 'bookId', true)
 
     let userPromise = User.findById(userId).exec()
     let bookPromise = Book.findById(bookId).exec()

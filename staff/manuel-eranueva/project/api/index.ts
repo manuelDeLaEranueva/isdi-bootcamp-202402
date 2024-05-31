@@ -318,7 +318,7 @@ mongoose.connect(MONGODB_URL)
                 const { bookId } = req.body
 
                 logic.addToBookshelf(userId, bookId)
-                    .then(() => res.status(201).json({ message: 'Book added to bookshelf' })) // Asegúrate de enviar una respuesta JSON
+                    .then(() => res.status(201).json({ message: 'Book added to bookshelf' }))
                     .catch(error => {
                         if (error instanceof SystemError) {
                             logger.error(error.message)
@@ -354,7 +354,7 @@ mongoose.connect(MONGODB_URL)
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
                 const { bookId } = req.params
 
-                logic.removeBookFromBookshelf(userId, bookId)
+                logic.removeBookFromBookshelf(userId as string, bookId as string)
                     .then(() => res.status(204).send())
                     .catch(error => {
                         if (error instanceof SystemError) {

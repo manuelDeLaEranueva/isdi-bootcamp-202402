@@ -47,15 +47,15 @@ describe('retrieveCards', () => {
 
                 return Promise.all([
                     Card.create({
-                        book: book1._id,
-                        owner: user._id,
+                        book: book1.id,
+                        owner: user.id,
                         image: 'https://m.media-amazon.com/images/I/71lV0Qc6ApL._AC_UF894,1000_QL80_.jpg',
                         name: 'Hierba',
                         author: 'Keum Suk Gendry-Kim'
                     }),
                     Card.create({
-                        book: book2._id,
-                        owner: user._id,
+                        book: book2.id,
+                        owner: user.id,
                         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDzvc968j48yhNhxhlboT578obXky8DvpaATodIjItQ&s',
                         name: 'Crisis Zone',
                         author: 'Hanselmann'
@@ -65,19 +65,19 @@ describe('retrieveCards', () => {
     )
 
     it('retrieves all cards for existing user', () =>
-        logic.retrieveCards()
+        logic.retrieveCards(user.id) // <--- Pasamos el user.id aquí
             .then(cards => {
                 expect(cards).to.have.lengthOf(2)
 
-                const card1b = cards.find(card => card.book._id.toString() === book1._id.toString())
+                const card1b = cards.find(card => card.book.id.toString() === book1.id.toString())
                 expect(card1b.book.name).to.equal('Book 1')
                 expect(card1b.book.author).to.equal('Author 1')
-                expect(card1b.owner._id.toString()).to.equal(user._id.toString())
+                expect(card1b.owner.id.toString()).to.equal(user.id.toString())
 
-                const card2b = cards.find(card => card.book._id.toString() === book2._id.toString())
+                const card2b = cards.find(card => card.book.id.toString() === book2.id.toString())
                 expect(card2b.book.name).to.equal('Book 2')
                 expect(card2b.book.author).to.equal('Author 2')
-                expect(card2b.owner._id.toString()).to.equal(user._id.toString())
+                expect(card2b.owner.id.toString()).to.equal(user.id.toString())
             })
     )
 

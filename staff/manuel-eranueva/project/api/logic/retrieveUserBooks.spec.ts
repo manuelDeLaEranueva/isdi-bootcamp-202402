@@ -53,40 +53,40 @@ describe('retrieveUserBooks', () => {
 
                 return Promise.all([
                     MyBookself.create({
-                        book: book1._id,
-                        owner: user._id
+                        book: book1.id,
+                        owner: user.id
                     }),
                     MyBookself.create({
-                        book: book2._id,
-                        owner: user._id
+                        book: book2.id,
+                        owner: user.id
                     }),
                     MyBookself.create({
-                        book: book3._id,
-                        owner: user._id
+                        book: book3.id,
+                        owner: user.id
                     })
                 ])
             })
     )
 
     it('retrieves all books from user', () =>
-        logic.retrieveUserBooks(user._id.toString())
+        logic.retrieveUserBooks(user.id.toString())
             .then(books => {
                 expect(books).to.have.lengthOf(3)
 
-                const book1b = books.find(book => book.book._id.toString() === book1._id.toString())
+                const book1b = books.find(book => book.book.id.toString() === book1.id.toString())
                 expect(book1b.book.name).to.equal('Tekonkinkreet')
                 expect(book1b.book.author).to.equal('Matsumoto')
-                expect(book1b.owner._id.toString()).to.equal(user._id.toString())
+                expect(book1b.owner.id.toString()).to.equal(user.id.toString())
 
-                const book2b = books.find(book => book.book._id.toString() === book2._id.toString())
+                const book2b = books.find(book => book.book.id.toString() === book2.id.toString())
                 expect(book2b.book.name).to.equal('Hierba')
                 expect(book2b.book.author).to.equal('Keum Suk Gendry-Kim')
-                expect(book2b.owner._id.toString()).to.equal(user._id.toString())
+                expect(book2b.owner.id.toString()).to.equal(user.id.toString())
 
-                const book3b = books.find(book => book.book._id.toString() === book3._id.toString())
+                const book3b = books.find(book => book.book.id.toString() === book3.id.toString())
                 expect(book3b.book.name).to.equal('Crisis Zone')
                 expect(book3b.book.author).to.equal('Hanselmann')
-                expect(book3b.owner._id.toString()).to.equal(user._id.toString())
+                expect(book3b.owner.id.toString()).to.equal(user.id.toString())
             })
     )
 
@@ -99,7 +99,7 @@ describe('retrieveUserBooks', () => {
             username: 'johndoe',
             password: '123456'
         }).then(newUser =>
-            logic.retrieveUserBooks(newUser._id.toString())
+            logic.retrieveUserBooks(newUser.id.toString())
                 .then(books => {
                     expect(books).to.have.lengthOf(0)
                 })
