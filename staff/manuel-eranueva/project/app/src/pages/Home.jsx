@@ -8,7 +8,6 @@ import { useContext } from '../context'
 
 function Home({ onUserLoggedOut }) {
     const [user, setUser] = useState(null)
-    const [books, setBooks] = useState([])
     const [selectedBook, setSelectedBook] = useState(null)
     const [popupOpen, setPopupOpen] = useState(false)
     const [cards, setCards] = useState([])

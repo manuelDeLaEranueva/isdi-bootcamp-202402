@@ -37,19 +37,19 @@ describe('retrieveBooks', () => {
             .then(([book1, book2, book3]) =>
                 logic.retrieveBooks(user.id)
                     .then(books => {
-                        expect(books).to.have.lengthOf(3);
+                        expect(books).to.have.lengthOf(3)
 
-                        const book1b = books.find(book => book.image === book1.image);
-                        expect(book1b.name).to.equal(book1.name);
-                        expect(book1b.author).to.equal(book1.author);
+                        const book1b = books.find(book => book.image === book1.image)
+                        expect(book1b.name).to.equal(book1.name)
+                        expect(book1b.author).to.equal(book1.author)
 
-                        const book2b = books.find(book => book.image === book2.image);
-                        expect(book2b.name).to.equal(book2.name);
-                        expect(book2b.author).to.equal(book2.author);
+                        const book2b = books.find(book => book.image === book2.image)
+                        expect(book2b.name).to.equal(book2.name)
+                        expect(book2b.author).to.equal(book2.author)
 
-                        const book3b = books.find(book => book.image === book3.image);
-                        expect(book3b.name).to.equal(book3.name);
-                        expect(book3b.author).to.equal(book3.author);
+                        const book3b = books.find(book => book.image === book3.image)
+                        expect(book3b.name).to.equal(book3.name)
+                        expect(book3b.author).to.equal(book3.author)
                     })
             )
     )
@@ -57,7 +57,7 @@ describe('retrieveBooks', () => {
     it('retrieves no books if user has no books', () =>
         logic.retrieveBooks(user.id)
             .then(books => {
-                expect(books).to.have.lengthOf(0);
+                expect(books).to.have.lengthOf(0)
             })
     )
 

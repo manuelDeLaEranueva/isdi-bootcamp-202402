@@ -1,7 +1,7 @@
-import { validate, errors } from 'com';
-import { User, Book } from '../data/index.ts';
+import { validate, errors } from 'com'
+import { User, Book } from '../data/index.ts'
 
-const { SystemError, NotFoundError } = errors;
+const { SystemError, NotFoundError } = errors
 
 type BookResponse = {
     id: string;
@@ -11,7 +11,7 @@ type BookResponse = {
 }
 
 function retrieveBooks(userId: string): Promise<BookResponse[]> {
-    validate.text(userId, 'userId', true);
+    validate.text(userId, 'userId', true)
 
     return User.findById(userId)
         .then(user => {
@@ -30,10 +30,10 @@ function retrieveBooks(userId: string): Promise<BookResponse[]> {
         })
         .catch(error => {
             if (error instanceof NotFoundError) {
-                return Promise.reject(error);
+                return Promise.reject(error)
             }
-            return Promise.reject(new SystemError(error.message));
+            return Promise.reject(new SystemError(error.message))
         });
 }
 
-export default retrieveBooks;
+export default retrieveBooks

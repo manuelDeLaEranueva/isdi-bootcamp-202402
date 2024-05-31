@@ -1,9 +1,9 @@
-import { ObjectId } from 'mongoose';
-import { Book, MyBookself, User } from '../data/index.ts';
-import { Schema } from 'mongoose';
-import { validate, errors } from 'com';
+import { ObjectId } from 'mongoose'
+import { Book, MyBookself, User } from '../data/index.ts'
+import { Schema } from 'mongoose'
+import { validate, errors } from 'com'
 
-const { SystemError, NotFoundError } = errors;
+const { SystemError, NotFoundError } = errors
 
 type BookResponse = {
     id: string;
@@ -76,8 +76,8 @@ function retrieveUserBooks(userId: string): Promise<MyBookselfResponse[]> {
             })).reverse();
         })
         .catch(error => {
-            return Promise.reject(new SystemError(error.message));
-        });
+            return Promise.reject(new SystemError(error.message))
+        })
 }
 
-export default retrieveUserBooks;
+export default retrieveUserBooks

@@ -1,8 +1,8 @@
-import { ObjectId } from 'mongoose';
-import { Card, User } from '../data/index.ts';
-import { errors, validate } from 'com';
+import { ObjectId } from 'mongoose'
+import { Card, User } from '../data/index.ts'
+import { errors, validate } from 'com'
 
-const { SystemError, NotFoundError } = errors;
+const { SystemError, NotFoundError } = errors
 
 type BookResponse = {
     id: string;
@@ -45,17 +45,17 @@ type PopulatedCard = {
 }
 
 function retrieveCards(userId: string): Promise<CardResponse[]> {
-    validate.text(userId, 'userId', true);
+    validate.text(userId, 'userId', true)
 
     return User.findById(userId)
         .then(user => {
             if (!user) {
-                throw new NotFoundError('user not found');
+                throw new NotFoundError('user not found')
             }
             return Card.find()
                 .populate('book', '_id image name author')
                 .populate('owner', '_id name email username')
-                .lean<PopulatedCard[]>();
+                .lean<PopulatedCard[]>()
         })
         .then((cards: PopulatedCard[]) => {
             return cards.map(card => ({
@@ -72,14 +72,14 @@ function retrieveCards(userId: string): Promise<CardResponse[]> {
                     email: card.owner.email,
                     username: card.owner.username
                 }
-            })).reverse();
+            })).reverse()
         })
         .catch(error => {
             if (error instanceof NotFoundError) {
-                return Promise.reject(error);
+                return Promise.reject(error)
             }
-            return Promise.reject(new SystemError(error.message));
-        });
+            return Promise.reject(new SystemError(error.message))
+        })
 }
 
-export default retrieveCards;
+export default retrieveCards

@@ -65,7 +65,7 @@ describe('retrieveCards', () => {
     )
 
     it('retrieves all cards for existing user', () =>
-        logic.retrieveCards(user.id) // <--- Pasamos el user.id aquí
+        logic.retrieveCards(user.id)
             .then(cards => {
                 expect(cards).to.have.lengthOf(2)
 
