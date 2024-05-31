@@ -29,7 +29,7 @@ function CardList({ cards: initialCards, onDeleted }) {
             })
             .catch(error => showFeedback(error, 'error'))
     }
-    console.log(cards)
+
     logger.debug('CardList -> render')
 
     return (

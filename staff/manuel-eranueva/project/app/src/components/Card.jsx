@@ -10,7 +10,7 @@ function Card({ item: card, onDeleted }) {
             if (confirmed)
                 try {
                     logic.removeCard(cardId)
-                        .then(() => onDeleted())
+                        .then(() => onDeleted(cardId))
                         .catch((error) => showFeedback(error, 'error'))
                 } catch (error) {
                     showFeedback(error)
