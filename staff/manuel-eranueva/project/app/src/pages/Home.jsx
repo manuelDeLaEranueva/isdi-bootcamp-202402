@@ -98,7 +98,7 @@ function Home({ onUserLoggedOut }) {
                 </button>
 
                 <Link to="/profile" className="text-[#050CA6] font-bold py-1 px-2 rounded text-center">
-                    <img src="../../public/profile.png" className="w-9 h-9" />
+                    <img src="../../public/profile.png" className="w-12 h-12" />
                 </Link>
 
                 <button onClick={handleLogoutClick} className="text-[#050CA6] font-bold py-1 px-2 rounded">

@@ -55,7 +55,7 @@ function Profile() {
             })
             .catch(error => console.error('Error deleting book from bookshelf:', error))
     }
-    console.log(bookselves)
+
     return (
         <section className="min-h-screen flex flex-col justify-start bg-white">
             <header className="fixed top-0 w-full bg-white shadow-md p-2 z-50">
@@ -82,7 +82,7 @@ function Profile() {
                     <img src="../../public/plus.png" className="w-9 h-9" />
                 </button>
                 <button onClick={() => setEditMode(!editMode)} className="text-[#050CA6] font-bold py-1 px-2 rounded">
-                    <img src="../../public/edit.png" className="w-9 h-9" />
+                    <img src="../../public/edit.png" className="w-11 h-11" />
                 </button>
             </footer>
 

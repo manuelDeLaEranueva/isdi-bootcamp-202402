@@ -57,7 +57,7 @@ mongoose.connect(MONGODB_URL)
 
                             res.status(409).json({ error: error.constructor.name, message: error.message })
                         }
-                        console.log(error)
+
                     })
             } catch (error) {
                 if (error instanceof TypeError || error instanceof ContentError) {
@@ -273,7 +273,7 @@ mongoose.connect(MONGODB_URL)
                 const token = authorization.slice(7)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET)
-                console.log(userId)
+                
                 logic.retrieveUserBooks(userId as string)
 
                     .then(cards => res.json(cards))

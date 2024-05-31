@@ -1,0 +1,129 @@
+import React, { useState, useEffect } from 'react' // Importamos hooks useState y useEffect
+import logic from '../logic' // Importamos el módulo logic que contiene las funciones de lógica
+import BookList from '../components/BookList' // Importamos el componente BookList
+import Popup from '../components/Popup' // Importamos el componente Popup
+import CardList from '../components/CardList' // Importamos el componente CardList
+import { Link } from 'react-router-dom' // Importamos Link para navegación
+import { useContext } from '../context' // Importamos el hook useContext para usar el contexto
+
+function Home({ onUserLoggedOut }) { // Declaramos el componente Home con una prop onUserLoggedOut
+    // Hook useState: para manejar el estado del usuario
+    const [user, setUser] = useState(null)
+    // Hook useState: para manejar el estado del libro seleccionado
+    const [selectedBook, setSelectedBook] = useState(null)
+    // Hook useState: para manejar el estado de visibilidad del popup
+    const [popupOpen, setPopupOpen] = useState(false)
+    // Hook useState: para manejar el estado de las cartas
+    const [cards, setCards] = useState([])
+    // Hook useState: para manejar el estado de visibilidad de la búsqueda
+    const [searchVisible, setSearchVisible] = useState(false)
+
+    // Hook useContext: para obtener showFeedback del contexto
+    const { showFeedback } = useContext()
+
+    // Hook useEffect: se ejecuta al montar el componente y cuando showFeedback cambia
+    useEffect(() => {
+        // Función asíncrona para obtener los datos del usuario y las cartas
+        async function fetchData() {
+            try {
+                // Lógica para obtener datos del usuario
+                const userData = await logic.retrieveUser()
+                setUser(userData)
+
+                // Lógica para obtener las cartas
+                const cards = await logic.retrieveCards()
+                setCards(cards)
+            } catch (error) {
+                // Mostrar feedback de error
+                showFeedback(error, 'error')
+            }
+        }
+        fetchData()
+    }, [showFeedback]) // Dependencia del useEffect
+
+    // Callback: para manejar el clic de logout
+    const handleLogoutClick = () => {
+        try {
+            // Lógica para cerrar sesión
+            logic.logoutUser()
+            onUserLoggedOut()
+        } catch (error) {
+            console.error('Logout failed:', error)
+            logic.cleanUpLoggedInUserId()
+        }
+    }
+
+    // Callback: para manejar la selección de un libro
+    const handleSelectedBook = (book) => {
+        setSelectedBook(book)
+        setSearchVisible(false)
+        setPopupOpen(true)
+    }
+
+    // Callback: para manejar el cierre del popup
+    const handleClosePopup = () => {
+        setSelectedBook(null)
+        setPopupOpen(false)
+    }
+
+    // Callback: para manejar la creación de una nueva carta
+    const handleCardCreated = () => {
+        setPopupOpen(false)
+        logic.retrieveCards()
+            .then(cards => {
+                setCards(cards)
+            })
+            .catch(error => console.error('Error retrieving cards:', error))
+    }
+
+    // Callback: para manejar la eliminación de una carta
+    const handleCardDelete = (deletedCardId) => {
+        setCards(prevCards => prevCards.filter(card => card.id !== deletedCardId))
+    }
+
+    return (
+        <>
+            <header className="fixed top-0 w-full bg-white shadow-md p-2 z-50">
+                <div className="max-w-screen-lg mx-auto flex justify-between items-center px-4">
+                    <img src="/logo.png" className="w-12 h-12 ml-3" alt="Logo" />
+                    {user && (
+                        <h1 className="text-[#000568] font-bold text-xl mr-3 self-end">
+                            Hi, {user.name}!
+                        </h1>
+                    )}
+                </div>
+            </header>
+            <main className="p-8 flex-grow pt-20 pb-16 max-w-screen-lg mx-auto">
+                {popupOpen && selectedBook && (
+                    <Popup book={selectedBook} onClose={handleClosePopup} onActionCompleted={handleCardCreated} context="addCard" />
+                )}
+                <CardList cards={cards} onDeleted={handleCardDelete} />
+            </main>
+            {searchVisible && (
+                <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg relative">
+                        <BookList onBookSelect={handleSelectedBook} />
+                        <button onClick={() => setSearchVisible(false)} className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            )}
+            <footer className="fixed bottom-0 w-full bg-white shadow-md p-2 z-50 flex justify-around outline outline-2 outline-[#000568]">
+                <button onClick={() => setSearchVisible(true)} className="text-[#050CA6] font-bold py-1 px-2 rounded">
+                    <img src="../../public/plus.png" className="w-9 h-9" />
+                </button>
+
+                <Link to="/profile" className="text-[#050CA6] font-bold py-1 px-2 rounded text-center">
+                    <img src="../../public/profile.png" className="w-9 h-9" />
+                </Link>
+
+                <button onClick={handleLogoutClick} className="text-[#050CA6] font-bold py-1 px-2 rounded">
+                    <img src="../../public/logout.png" className="w-9 h-9" />
+                </button>
+            </footer>
+        </>
+    )
+}
+
+export default Home

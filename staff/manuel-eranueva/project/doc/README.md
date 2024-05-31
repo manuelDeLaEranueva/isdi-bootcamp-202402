@@ -2,9 +2,11 @@
 
 ## Intro
 
-The idea of the app is to connect users who loves to read. Reading can be such an expensive hobbie, and despite the price, some books can be read in a few hours. 
+I developed this app to connect book enthusiasts and facilitate the sharing of literature without any monetary exchange. I believe in promoting an open and horizontal culture, where people can distribute knowledge and connect with others who share similar interests.
 
-Although there's a huge number of public libraries in Barcelona, they usually don't have a big comic section, or a scientific section. Novels are usually easy to find, but out of the fiction popular books, it can be hard to find specific books, so the main idea is to share books while meeting new people. No monetary transactions are allowed inside the app, the main idea is to share a hobby and make friends, the app is not designed to make bussiness.
+Reading can often be an expensive hobby, with some books being devoured in just a few hours. Despite the abundance of public libraries in Barcelona, finding specific books can be challenging unless they are popular novels.
+
+This app aims to bridge that gap by encouraging users to share their personal collections and meet new people. By fostering a community of readers who share their favorite books, I create a space where literature can be enjoyed and friendships can flourish. Remember, the app is strictly for sharing passions and connecting with fellow readers, not for conducting business.
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHV6ZTFvYWhkb2loZjhidXZ4ejRzeWR2em5weWlsYmk3OW4xNWNuaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/5SMSlLBkJk2eA/giphy.gif)
 
@@ -12,6 +14,9 @@ Although there's a huge number of public libraries in Barcelona, they usually do
 
 ### Use Cases
 
+- register a user
+- login
+- logout
 - search a book
 - create your own bookself with the books you own
 - scroll through the cards that other users post
@@ -44,6 +49,7 @@ v0.1
 
 ### Technologies 
 
+- Javascript
 - Typescript
 - React
 - Express
@@ -68,7 +74,7 @@ Book
 - author (string, required)
 - name (string, required)
 
-My bookself
+My bookself {}
 - id (MyBookself.id, required)
 - book (Book.id, required)
 - owner (User.id, required)

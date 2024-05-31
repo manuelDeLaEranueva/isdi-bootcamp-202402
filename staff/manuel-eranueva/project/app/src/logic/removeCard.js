@@ -1,7 +1,6 @@
 import { validate, errors } from 'com'
 
 function removeCard(cardId) {
-    console.log(`Removing card with ID: ${cardId}`)
     validate.text(cardId, 'cardId', true)
     validate.token(sessionStorage.token)
 

@@ -4,11 +4,9 @@ import logic from '../logic'
 import { useContext } from '../context'
 
 function UserBook({ item: bookself }) {
-    console.log(bookself)
     logger.debug('UserBook > render')
 
     if (!bookself) {
-        console.log('no bookselfs')
         return null
     }
 

@@ -20,14 +20,12 @@ function Card({ item: card, onDeleted }) {
     logger.debug('Card > render')
 
     if (!card) {
-        console.log('no cards')
         return null
     }
 
     const { owner, book } = card
 
     if (!owner || !book) {
-        console.log('Card data missing owner or book details')
         return null
     }
 

@@ -25,7 +25,7 @@ readdir('.')
 
                     if (changed)
                         writeFile(jsFile, newContent)
-                            .then(() => console.log(`${jsFile} updated`))
+
                             .catch(console.error)
                 })
                 .catch(console.error)
